@@ -12,9 +12,9 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'], {
-      root: path.resolve(__dirname, '../')
-    }),
+    // new CleanWebpackPlugin(['dist'], {
+    //   root: path.resolve(__dirname, '../')
+    // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks(module) {

@@ -16,7 +16,8 @@ module.exports = {
     remark: 'h5'
   }],
   defaultEnv: {
-    name: 'default',
-    publicPath: 'index'
+    name: 'shared',
+    publicPath: 'client/shared',
+    remark: 'shared'
   }
 };

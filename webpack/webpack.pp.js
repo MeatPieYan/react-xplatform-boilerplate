@@ -12,6 +12,7 @@ const baseConfig = require('./webpack.base');
 const xPlatform = require('../config/x-platform');
 
 const config = xPlatform.specialEnvList;
+config.push(xPlatform.defaultEnv);
 // const config = ['wx','h5']
 
 
@@ -54,10 +55,10 @@ const WPconfig = config.map(item =>
                     }
                     const request = path.relative(options.context, context.resourcePath);
                     options.content = `${options.hashPrefix}${request}+${localName}`;
-
                     const _localIdentName = '[path][name]__[local]'.replace(/\[local\]/gi, localName);
-                    const hash = loaderUtils.interpolateName(context, _localIdentName, options);
-                    return `dist-${hash.replace(new RegExp('[^a-zA-Z0-9\\-_\u00A0-\uFFFF]', 'g'), '-').replace(/^((-?[0-9])|--)/, '_$1')}`;
+                    let hash = loaderUtils.interpolateName(context, _localIdentName, options);
+                    hash = hash.replace('shared', item.remark);
+                    return `${hash.replace(new RegExp('[^a-zA-Z0-9\\-_\u00A0-\uFFFF]', 'g'), '-').replace(/^((-?[0-9])|--)/, '_$1')}`;
                   }
                 }
               },

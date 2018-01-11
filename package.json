@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress --config ./webpack/webpack.pp.js --env.production && gulp",
+    "build": " gulp && webpack --progress --config ./webpack/webpack.pp.js --env.production",
     "build:performance": "webpack --display-modules --sort-modules-by size --config ./webpack/webpack.prod.js --env.production && gulp",
     "build:dev": "webpack --config ./webpack/webpack.dev.js",
     "dev": "nodemon ./server/bin/dev --watch server --watch webpack --watch view",

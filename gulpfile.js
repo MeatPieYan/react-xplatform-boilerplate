@@ -18,7 +18,7 @@ gulp.task('clean', (cb) => {
   cb();
 });
 
-gulp.task('copyServerCodeToDist', () =>
+gulp.task('copyServerCodeToDist', ['clean'], () =>
   gulp.src('./server/**/*')
     .pipe(gulpif(file => file.history[0].endsWith('.js'), babel()))
     .pipe(gulpif(file => file.history[0].endsWith('.js'), uglify()))
