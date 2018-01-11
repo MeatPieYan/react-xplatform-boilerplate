@@ -1,6 +1,6 @@
 import React from 'react';
 import App from './pages/App';
-import TestComp from './pages/test';
+import TestComp from './pages/test/Container';
 import TestComp1 from './pages/test.1';
 
 const Home2 = () => (

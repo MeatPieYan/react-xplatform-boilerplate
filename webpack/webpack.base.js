@@ -3,9 +3,9 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: {
-    app: './client/index.js'
-  },
+  // entry: {
+  //   app: './client/index.js'
+  // },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),

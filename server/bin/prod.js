@@ -13,5 +13,7 @@ require('css-modules-require-hook')({
 const path = require('path');
 const Pie = require('za-pie');
 
-const app = new Pie(path.resolve(__dirname, '../../'));
+const config = require('../../config/x-platform');
+
+const app = new Pie(path.resolve(__dirname, '../../'), config);
 app.startUp();

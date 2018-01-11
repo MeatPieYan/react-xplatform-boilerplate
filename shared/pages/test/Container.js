@@ -23,6 +23,7 @@ class TestComp extends PieComponent {
     return (
       <div>
         <h2 className={style.color}>{this.props.test}</h2>
+        default page
         <T />
       </div>
     );
