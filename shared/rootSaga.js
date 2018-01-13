@@ -1,5 +1,6 @@
 import { takeLatest, put, call} from 'redux-saga/effects';
 import 'isomorphic-fetch';
+import { post } from './fetch';
 
 import { sagaAction } from './pages/test/action';
 
@@ -10,11 +11,8 @@ function* test() {
 }
 
 function* zaPay(payload) {
-  const data = yield call(() =>fetch ('/api/zaPay', {
-    method: 'post',
-    body: JSON.stringify(payload.payload.data)
-  })
-  );
+  debugger;
+  const data = yield call(() => post('/api/zaPay', payload.payload.data));
   console.log('data', data);
 }
 
