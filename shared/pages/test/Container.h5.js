@@ -8,6 +8,7 @@ import * as style from './style.scss';
 import T from '../test.1';
 import { get,post } from '../../fetch';
 import { loadData } from '../../service';
+import Jssdk from '../../components/Jssdk/index';
 
 
 class TestComp extends PieComponent {
@@ -25,9 +26,14 @@ class TestComp extends PieComponent {
     // })
   }
 
+  onWxReady(_wx) {
+    alert('wx ready');
+  }
+
   render() {
     return (
       <div>
+        <Jssdk onWxReady={this.onWxReady}/>
         <h2 className={style.color}>{this.props.test}</h2>
         h5 page
         <T />
