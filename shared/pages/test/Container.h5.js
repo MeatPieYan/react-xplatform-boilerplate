@@ -6,6 +6,9 @@ import rootSaga from '../../rootSaga';
 import * as style from './style.scss';
 
 import T from '../test.1';
+import { get,post } from '../../fetch';
+import { loadData } from '../../service';
+
 
 class TestComp extends PieComponent {
   static loadInitialData(store) {
@@ -14,6 +17,12 @@ class TestComp extends PieComponent {
 
   componentDidMount() {
     this.props.testAction();
+    post('/api/test/producer',{activityCode:'MGM0003'}).then(res => {
+      console.log(res);
+    });
+    // loadData('/api/test/producer','post',{activityCode:'MGM0003'}).then(res=> {
+    //   console.log(res);
+    // })
   }
 
   render() {
