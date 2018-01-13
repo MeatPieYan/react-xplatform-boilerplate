@@ -20,10 +20,10 @@ async function parsePostData(ctx) {
 
 async function login(ctx, next) {
   const postData = await parsePostData(ctx);
-  const response = await loginRequestToJava(postData);
+  let response = await loginRequestToJava(postData);
+  response = response || {};
   console.log('login response =====> ', response);
-  // const body = await loginRequestToJava(ctx);
-  // ctx.body = body;
+  ctx.body = response.sessionKey;
   next();
 }
 
