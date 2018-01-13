@@ -16,7 +16,7 @@ const clientWebpack = merge(baseConfig, {
     publicPath: '/'
   },
   plugins: [
-    new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    // new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
     new UglifyJSPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../view/template.html')

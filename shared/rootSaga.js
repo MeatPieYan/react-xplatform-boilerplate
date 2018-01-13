@@ -9,8 +9,18 @@ function* test() {
   yield put(sagaAction(data.status));
 }
 
+function* zaPay(payload) {
+  const data = yield call(() =>fetch ('/api/zaPay', {
+    method: 'post',
+    body: JSON.stringify(payload.payload.data)
+  })
+  );
+  console.log('data', data);
+}
+
 export default function* () {
   yield [
-    takeLatest('ACTION_TEST', test)
+    takeLatest('ACTION_TEST', test),
+    takeLatest('ACTION_PAY', zaPay)
   ];
 }
