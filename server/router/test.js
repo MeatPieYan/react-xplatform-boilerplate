@@ -1,5 +1,5 @@
 const Router = require('koa-router');
-const {sendReq,formatData} = require('../../shared/controller');
+const {sendReq,formatData} = require('../service/controller');
 
 
 const router = new Router();

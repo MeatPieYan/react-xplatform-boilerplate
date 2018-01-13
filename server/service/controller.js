@@ -1,5 +1,5 @@
-import { get, post, request} from './fetch';
-import { getServerHost } from './utils';
+import { get, post, request} from '../../shared/fetch';
+import { getServerHost } from '../../shared/utils';
 
 const sendReq = (platform, path, needWechatInfo = false) => async (ctx, next) => {
   const host = getServerHost(platform);
@@ -56,7 +56,7 @@ const formatData = (platform = 'java') => async (ctx, next) => {
 const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') => async (ctx, next) => {
   const data = method === 'post' ? ctx.request.body : {};
   const path = `/gateway/api?serviceName=${serviceName}&serviceVersion=${serviceVersion}`;
-  const host = ctx.utils.getServerHost('commongw');
+  const host = getServerHost('commongw');
   const options = {
     host,
     path,
@@ -65,10 +65,13 @@ const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') =>
     'Content-Type': 'application/json;charset=UTF-8'
   };
 
+  console.log('sendCommonGW service');
+
+
   if (data.sessionKey) {
     options['session-key'] = data.sessionKey;
   }
-
+  console.log(options);
   console.log(`call api ${path} with data: ${JSON.stringify(options)}`);
 
   try {
