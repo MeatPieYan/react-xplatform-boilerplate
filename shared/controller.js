@@ -31,21 +31,26 @@ const sendReq = (platform, path, needWechatInfo = false) => async (ctx, next) =>
 
   try {
     let result = await request(options);
-    console.log(`call api ${path} response data: ${JSON.stringify(result)}`);
-    if (result && result.success) {
-      ctx.status = 200;
-      ctx.body = result.value;
-
-      return next();
-    } else {
-      ctx.status = 500;
-      ctx.body = result.errorMsg;
-    }
+    ctx.body = result;
+    return next();
   } catch(e) {
     ctx.status = 500;
     ctx.body = e;
   }
+}
 
+const formatData = (platform = 'java') => async (ctx, next) => {
+  const result = ctx.body;
+
+  if (result && result.success) {
+    ctx.status = 200;
+    ctx.body = result.value;
+
+    return next();
+  } else {
+    ctx.status = 500;
+    ctx.body = result.errorMsg;
+  }
 }
 
 const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') => async (ctx, next) => {
@@ -67,17 +72,9 @@ const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') =>
   console.log(`call api ${path} with data: ${JSON.stringify(options)}`);
 
   try {
-    const result = await request(options);
-    console.log(`call api ${path} response data: ${JSON.stringify(result)}`);
-    if (result && result.success) {
-      ctx.status = 200;
-      ctx.body = result;
-
-      return next();
-    } else {
-      ctx.status = 500;
-      ctx.body = result.errorMsg;
-    }
+    let result = await request(options);
+    ctx.body = result;
+    return next();
   } catch(e) {
     ctx.status = 500;
     ctx.body = e;
@@ -86,5 +83,6 @@ const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') =>
 
 export default {
   sendReq,
-  sendCommonGW
+  sendCommonGW,
+  formatData
 }

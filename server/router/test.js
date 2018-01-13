@@ -1,10 +1,10 @@
 const Router = require('koa-router');
-const {sendReq} = require('../../shared/controller');
+const {sendReq,formatData} = require('../../shared/controller');
 
 
 const router = new Router();
 const testRouter = new Router({ prefix: '/test' });
-testRouter.post('/producer',sendReq('activitygw','/activityTplInfo/find/byCondition'), async (ctx, next) => {
+testRouter.post('/producer',sendReq('activitygw','/activityTplInfo/find/byCondition'),formatData('java'), async (ctx, next) => {
   console.log('test222');
   const data = ctx.body;
   ctx.status = 200;
