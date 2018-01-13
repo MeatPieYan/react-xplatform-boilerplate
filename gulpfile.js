@@ -66,5 +66,7 @@ gulp.task('copySpCode', ['removePlatformSpCode'], () => {
 
   return merge(streams);
 });
-
+gulp.task('watch', () => {
+  gulp.watch('./server/**/*', ['default']);
+});
 gulp.task('default', ['copySpCode']);
