@@ -3,6 +3,8 @@ const nodeSass = require('node-sass');
 const path = require('path');
 const Pie = require('za-pie');
 
+const config = require('../../config/x-platform');
+
 // scss compiler hook
 cssModulesRequireHook({
   extensions: ['.scss'],
@@ -15,8 +17,6 @@ cssModulesRequireHook({
   generateScopedName: '[path][name]__[local]'
 });
 
-
-const config = require('../../config/x-platform');
-
 const app = new Pie(path.resolve(__dirname, '../../'), config);
+
 app.startUp();

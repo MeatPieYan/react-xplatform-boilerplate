@@ -1,21 +1,19 @@
 const Router = require('koa-router');
+const { sendReq, formatData } = require('../service/controller');
 
 
 const router = new Router();
 const testRouter = new Router({ prefix: '/test' });
-testRouter.get('/producer', async (ctx, next) => {
-  // const payloads = [{
-  //   topic: 'tac-flying-phoenix-user-message-2176',
-  //   messages: 'hello 123123'
-  // }];
-  // ctx.producer.send(payloads, function (err, data) {
-  //   console.log(data);
-  // });
-  console.log('test123123123123');
-  next();
+testRouter.post('/producer', sendReq('activitygw', '/activityTplInfo/find/byCondition'), formatData('java'), async (ctx, next) => {
+  console.log('test222');
+  const data = ctx.body;
+  ctx.status = 200;
+  ctx.body = data;
+  return next();
 }
 
 );
+
 router.use(testRouter.routes());
 
 module.exports = router;
