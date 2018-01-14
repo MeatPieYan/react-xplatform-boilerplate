@@ -7,7 +7,7 @@ const sendReq = (platform, path, needWechatInfo = false) => async (ctx, next) =>
   const data = ctx.request.body;
 
   if (needWechatInfo) {
-    Object.assign(data,ctx.request.body, {
+    Object.assign(data, ctx.request.body, {
       openid: ctx.session.openid || '',
       unionid: ctx.session.unionid || ''
     });
@@ -38,7 +38,7 @@ const sendReq = (platform, path, needWechatInfo = false) => async (ctx, next) =>
     ctx.status = 500;
     ctx.body = e;
   }
-}
+};
 
 const formatData = (platform = 'java') => async (ctx, next) => {
   const result = ctx.body;
@@ -52,7 +52,7 @@ const formatData = (platform = 'java') => async (ctx, next) => {
 
   ctx.status = 500;
   ctx.body = result.errorMsg;
-}
+};
 
 const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') => async (ctx, next) => {
   const data = method === 'post' ? ctx.request.body : {};
@@ -83,10 +83,10 @@ const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') =>
     ctx.status = 500;
     ctx.body = e;
   }
-}
+};
 
 export default {
   sendReq,
   sendCommonGW,
   formatData
-}
+};

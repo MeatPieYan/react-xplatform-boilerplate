@@ -1,16 +1,16 @@
-import { takeLatest, put } from 'redux-saga/effects';
+import { takeLatest, put, call, all } from 'redux-saga/effects';
 import 'isomorphic-fetch';
 
 import { sagaAction } from './pages/test/action';
 
 function* test() {
-  // const data = yield call(()=> fetch('//offline-news-api.herokuapp.com/stories'));
+  const data = yield call(() => fetch('//cnodejs.org/api/v1/topics').then(res => res.json()));
   // debugger
-  yield put(sagaAction(200));
+  yield put(sagaAction(JSON.stringify(data)));
 }
 
 export default function* () {
-  yield [
+  yield all([
     takeLatest('ACTION_TEST', test)
-  ];
+  ]);
 }

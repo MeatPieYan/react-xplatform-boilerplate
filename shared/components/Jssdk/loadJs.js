@@ -3,7 +3,7 @@ import { loadThirdPartyScript } from '../../utils';
 
 const getJsConfig = (onReady) => {
   // alert('success');
-  const resultPromise = post('/api/wechat/getSignSDK',{
+  const resultPromise = post('/api/wechat/getSignSDK', {
     data: {
       href: encodeURIComponent(location.href)
     }
@@ -52,7 +52,7 @@ const loadJssdk = (onReady) => {
 
   loadThirdPartyScript(src, () => {
     getJsConfig(onReady);
-  })
+  });
 };
 
 export default {
