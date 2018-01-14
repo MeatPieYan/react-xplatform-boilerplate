@@ -18,7 +18,7 @@ require('css-modules-require-hook')({
 });
 
 const webpack = require('webpack');
-const webpackConfig = require('../../webpack/webpack.dev');
+const webpackConfig = require('../../../webpack/webpack.dev');
 const webpackDevMiddleware = require('koa-webpack-dev-middleware');
 const webpackHotMiddleware = require('koa-webpack-hot-middleware');
 const convert = require('koa-convert');
@@ -27,7 +27,9 @@ const path = require('path');
 const compiler = webpack(webpackConfig);
 
 const Pie = require('za-pie');
-const app = new Pie(path.resolve(__dirname, '../../'));
+const config = require('../../config/x-platform');
+
+const app = new Pie(path.resolve(__dirname, '../../'), config);
 
 // add webpack-dev-server for development env
 app.use(webpackDevMiddleware(compiler, {
@@ -39,8 +41,5 @@ app.use(webpackDevMiddleware(compiler, {
 // hope it will be upgraded.
 // (Maybe a pull request for that npm module will make it effective more quickly)
 app.use(convert(webpackHotMiddleware(compiler)));
-
-// server.listen(3000);
-
 
 app.startUp();

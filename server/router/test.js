@@ -11,7 +11,7 @@ testRouter.get('/producer', async (ctx, next) => {
   // ctx.producer.send(payloads, function (err, data) {
   //   console.log(data);
   // });
-  console.log('test');
+  console.log('test123123123123');
   next();
 }
 

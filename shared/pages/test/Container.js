@@ -1,6 +1,6 @@
 import React from 'react';
 // import 'isomorphic-fetch';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import { PieComponent, pieConnect } from 'za-piehelper';
 
@@ -31,5 +31,5 @@ class TestComp extends PieComponent {
 }
 
 export default pieConnect(
-  state=>({test: state.reducer.test.text})
+  state => ({ test: state.reducer.test.text })
 )(TestComp);

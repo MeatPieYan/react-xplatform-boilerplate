@@ -1,17 +1,20 @@
+const cssModulesRequireHook = require('css-modules-require-hook');
+const nodeSass = require('node-sass');
+const path = require('path');
+const Pie = require('za-pie');
+
 // scss compiler hook
-require('css-modules-require-hook')({
+cssModulesRequireHook({
   extensions: ['.scss'],
   preprocessCss: (data, filename) =>
-      require('node-sass').renderSync({
-          data,
-          file: filename
-      }).css,
+    nodeSass.renderSync({
+      data,
+      file: filename
+    }).css,
   camelCase: true,
   generateScopedName: '[path][name]__[local]'
 });
 
-const path = require('path');
-const Pie = require('za-pie');
 
 const config = require('../../config/x-platform');
 
