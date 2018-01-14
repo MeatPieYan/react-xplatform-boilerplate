@@ -5,7 +5,7 @@ import React from 'react';
 import { PieComponent, pieConnect } from 'za-piehelper';
 
 import * as action from './action';
-import rootSaga from '../../rootSaga';
+import rootSaga from '../../redux/rootSaga';
 import * as style from './style.scss';
 
 import T from '../test.1';

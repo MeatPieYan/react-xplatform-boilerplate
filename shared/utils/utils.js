@@ -1,4 +1,4 @@
-import config from '../config/serviceConfig';
+import config from '../../config/serviceConfig';
 
 const getServerHost = (serverName) => {
   return config['test'][serverName].domain;

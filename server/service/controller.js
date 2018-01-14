@@ -1,6 +1,6 @@
 // import { get, post, request } from '../../shared/fetch';
-import { request } from '../../shared/fetch';
-import { getServerHost } from '../../shared/utils';
+import { request } from '../../shared/utils/fetch';
+import { getServerHost } from '../../shared/utils/utils';
 
 const sendReq = (platform, path, needWechatInfo = false) => async (ctx, next) => {
   const host = getServerHost(platform);
