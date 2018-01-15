@@ -6,8 +6,8 @@ const LOCAL_PORT = process.env.port || 8080;
 const Local = {
   host: LOCAL_HOST,
   port: LOCAL_PORT,
-  domain: 'http://' + LOCAL_HOST + ':' + LOCAL_PORT
-}
+  domain: `http://${LOCAL_HOST}${LOCAL_PORT}`
+};
 
 function request(options) {
   const defaults = {
@@ -17,10 +17,11 @@ function request(options) {
     data: {},
     'Content-Type': 'application/json'
   };
-  let url,headers = {};
+  let url;
+  const headers = {};
 
   options = Object.assign({}, defaults, options);
-  
+
   const isNode = typeof window === 'undefined';
 
   if (isNode && options.host === null) {
@@ -34,16 +35,16 @@ function request(options) {
       headers[key] = options[key];
     }
   });
-  console.log(`fetch url: ${url} width data: ${JSON.stringify({ 
+  console.log(`fetch url: ${url} width data: ${JSON.stringify({
     method: options.method,
     body: JSON.stringify(options.data),
-    headers: headers,
+    headers
   })}`);
 
-  return fetch(url, { 
+  return fetch(url, {
     method: options.method,
     body: JSON.stringify(options.data),
-    headers: headers,
+    headers
   }).then(res => res.json());
 }
 

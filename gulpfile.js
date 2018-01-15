@@ -4,7 +4,7 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const merge = require('merge-stream');
 const del = require('del');
-const rename = require("gulp-rename");
+const rename = require('gulp-rename');
 const gulpif = require('gulp-if');
 
 const xPlatform = require('./config/x-platform');
@@ -18,7 +18,7 @@ gulp.task('clean', (cb) => {
   cb();
 });
 
-gulp.task('copyServerCodeToDist', ['clean'], () =>
+gulp.task('copyServerCodeToDist', () =>
   gulp.src('./server/**/*')
     .pipe(gulpif(file => file.history[0].endsWith('.js'), babel()))
     .pipe(gulpif(file => file.history[0].endsWith('.js'), uglify()))
@@ -31,7 +31,6 @@ gulp.task('copyConfigToDist', () =>
     .pipe(gulpif(file => file.history[0].endsWith('.js'), uglify()))
     .pipe(gulp.dest('./dist/config'))
 );
-
 
 gulp.task('copy', ['copyServerCodeToDist', 'copyConfigToDist'], () => {
   const platforms = config.concat('shared');
@@ -66,7 +65,5 @@ gulp.task('copySpCode', ['removePlatformSpCode'], () => {
 
   return merge(streams);
 });
-gulp.task('watch', () => {
-  gulp.watch('./server/**/*', ['default']);
-});
-gulp.task('default', ['copySpCode']);
+
+gulp.task('default', ['clean', 'copySpCode']);

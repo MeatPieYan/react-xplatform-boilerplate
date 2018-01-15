@@ -1,18 +1,35 @@
-function Demoplugin(options) {
-  this.options = options.name;
-}
+// function Demoplugin(options) {
+//   this.options = options.name;
+// }
 
-Demoplugin.prototype.apply = function(compiler) {
-  compiler.plugin("normal-module-factory", (nmf) => {
-      nmf.plugin("before-resolve", (result, callback) => {
-          if ( result.request === '../shared/router') {
-              result.request = `../dist/${this.options}/router`
-          }
+// Demoplugin.prototype.apply = function(compiler) {
+//   compiler.plugin("normal-module-factory", (nmf) => {
+//       nmf.plugin("before-resolve", (result, callback) => {
+//           if ( result.request === '../shared/router') {
+//               result.request = `../dist/${this.options}/router`
+//           }
 
-          callback(null, result);
+//           callback(null, result);
+//       });
+//   });
+
+// }
+
+class CrossPlatformWebpackPlugin {
+  constructor(options) {
+    this.options = options.name;
+  }
+
+  apply(compiler) {
+    compiler.plugin('normal-module-factory', (nmf) => {
+      nmf.plugin('before-resolve', (result, callback) => {
+        if (result.request === '../shared/router') {
+          result.request = `../dist/${this.options}/router`;
+        }
+        callback(null, result);
       });
-  });
-
+    });
+  }
 }
 
-module.exports= Demoplugin;
+module.exports = CrossPlatformWebpackPlugin;

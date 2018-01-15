@@ -1,15 +1,12 @@
 
-const { pay, cashier } = require('../controller/pay');
+const { pay } = require('../controller/pay');
 const Router = require('koa-router');
+const { sendCommonGW } = require('../service/controller');
 
 const router = new Router();
 const payRouter = new Router({ prefix: '/zaPay' });
 
-payRouter.post('/', pay);
-payRouter.post('/cashier', (ctx, next) => {
-  console.log('ctx.request.body---------------------------->', ctx.request.body);
-  next();
-}, cashier);
+payRouter.post('/', sendCommonGW('za.sales.zhongan.app.multiUnifiedOrder.createOrder'), pay);
 
 router.use(payRouter.routes());
 

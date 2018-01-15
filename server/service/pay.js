@@ -8,22 +8,6 @@ function payReq(body) {
   return post(API, body);
 }
 
-function cashierReq(body) {
-  const formData = new FormData();
-
-  Object.keys(body).map(item => {
-    formData.append(item, body[item]);
-  });
-  return fetch (cashierAPI, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;'
-    },
-    body: payload.payload.data
-  })
-}
-
 export default {
-  payReq,
-  cashierReq
+  payReq
 };

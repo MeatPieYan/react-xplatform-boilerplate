@@ -3,13 +3,13 @@ import { PieComponent, pieConnect } from 'za-piehelper';
 // import { browserHistory } from 'react-router-dom';
 
 import * as action from './action';
-import rootSaga from '../../rootSaga';
+import rootSaga from '../../redux/rootSaga';
 import * as style from './style.scss';
 
 import T from '../test.1';
-import { get,post } from '../../fetch';
-import { loadData } from '../../service';
-import Jssdk from '../../components/Jssdk/index';
+// import { get,post } from '../../fetch';
+// import { loadData } from '../../service';
+// import Jssdk from '../../components/Jssdk/index';
 
 
 class TestComp extends PieComponent {
@@ -24,17 +24,14 @@ class TestComp extends PieComponent {
 
   componentDidMount() {
     this.props.testAction();
-    post('/api/test/producer',{activityCode:'MGM0003'}).then(res => {
-      console.log('res',res);
-    });
+    // post('/api/test/producer',{activityCode:'MGM0003'}).then(res => {
+    //   console.log(res);
+    // });
     // loadData('/api/test/producer','post',{activityCode:'MGM0003'}).then(res=> {
     //   console.log(res);
     // })
   }
 
-  onWxReady(_wx) {
-    alert('wx ready');
-  }
 
   zaPay() {
     const data = {
@@ -52,20 +49,20 @@ class TestComp extends PieComponent {
             "channelOrderNo": "OkNqHxWrK11c",
             "policyHolderType": "1",
             "policyHolderUserName": "绪寻绿",
-            "policyHolderCertiType": "I",
+            "policyHolderCertiType": "P",
             "policyHolderCertiNo": "510603198911029399",
             "policyHolderGender": "F",
             "policyHolderBirthDate": "19891102",
             "policyHolderPhone": "15803940945",
             "insuredUserName": "绪寻绿",
-            "insuredCertiType": "I",
+            "insuredCertiType": "P",
             "insuredCertiNo": "510603198911029399",
             "insuredGender": "F",
             "insuredPhone": "15607661780",
             "insuredBirthDay": "19891102",
             "insureDate": "20180111145435",
-            "flightNo": "CZ3952",
-            "flightDate": "20180111",
+            "flightNo": "AP7675",
+            "flightDate": "20180116",
             "departureCode": "SHA",
             "destinationCode": "PEK",
             "premiumAmount": "5",
@@ -82,9 +79,8 @@ class TestComp extends PieComponent {
         }
       ],
       "orderRequestExtraInfo": {
-        "registerZaAccountPhone": "18012341001",
-        "backUrl": "/test",  // 交易关闭返回商户页面路径，可带一个参数。url中仅能包含数字，字母,-.~/#!:&%
-        "returnUrl": "/test"  //页面跳转同步通知路径，不可带任何参数。url中仅能包含数字，字母,-.~/#!:&%
+        "backUrl": "http://tac-gw-api-itest.zhongan.com",
+        "returnUrl": "http://tac-gw-api-itest.zhongan.com"
       }
     }
 
@@ -98,7 +94,7 @@ class TestComp extends PieComponent {
     return (
       <div>
         <button onClick={this.zaPay}>submit</button>
-        <Jssdk onWxReady={this.onWxReady} />
+        {/* <Jssdk onWxReady={this.onWxReady} /> */}
         <h2 className={style.color}>{this.props.test}</h2>
         h5 page
         <T />

@@ -2,22 +2,22 @@ module.exports = {
   specialEnvList: [{
     name: 'za',
     userAgent: 'ZhongAnWebView',
-    publicPath: 'client/za',
+    publicPath: 'za',
     remark: 'za'
   }, {
     name: 'wx',
     userAgent: 'MicroMessenger',
-    publicPath: 'client/wx',
+    publicPath: 'wx',
     remark: 'wx'
   }, {
     name: 'h5',
     userAgent: 'Chrome',
-    publicPath: 'client/h5',
+    publicPath: 'h5',
     remark: 'h5'
   }],
   defaultEnv: {
     name: 'shared',
-    publicPath: 'client/shared',
+    publicPath: 'shared',
     remark: 'shared'
   }
 };

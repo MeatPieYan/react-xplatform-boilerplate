@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { renderRoutes } from 'react-router-config';
-import {connect } from 'react-redux';
 
 // import * as action from '../shared/pages/test/action';
 // import rootSaga from './rootSaga';
