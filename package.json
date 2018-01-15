@@ -10,7 +10,12 @@
     "eslint": "./node_modules/.bin/eslint . --ext .js",
     "eslint:fix": "./node_modules/.bin/eslint . --ext .js --fix",
     "node": "nodemon ./server/bin/dev --watch server --watch config",
+    "pm2st": "cross-env DEPLOY_ENV=prd pm2 start ./dist/server/bin/prod -i max --name xXx",
+    "pm2rs": "cross-env DEPLOY_ENV=prd pm2 restart xXx",
+    "pm2stop": "pm2 stop xXx",
+    "pm2rl": "cross-env DEPLOY_ENV=prd pm2 reload xXx",
     "start": "cross-env DEPLOY_ENV=prd node ./dist/server/bin/prod",
+    "stylelint": "./node_modules/.bin/stylelint ./shared/pages/**/*.scss --syntax scss",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -86,6 +91,8 @@
     "koa-webpack-dev-middleware": "^2.0.2",
     "koa-webpack-hot-middleware": "^1.0.3",
     "nodemon": "^1.12.1",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^18.0.0",
     "webpack-dev-server": "^2.9.4"
   }
 }
