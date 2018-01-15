@@ -19,46 +19,29 @@ const loadData = (path, method = 'post', data = {}) => {
   });
 };
 
-const commonService = async (domain, path, method, data) => {
-  console.log(domain, path, method, data);
+const commonService = async (domain, options) => {
   const host = getServerHost(domain);
-  const options = {
-    host,
-    path,
-    method,
-    data
-  };
+  options.host = host;
 
   if (domain.toLowerCase() === 'php') {
     options['Content-Type'] = 'application/x-www-form-urlencoded';
+  } else if (domain.toLowerCase() === 'commongw') {
+    options['Content-Type'] = 'application/json;charset=UTF-8';
+
+    if (options.data.sessionKey) {
+      options['session-key'] = options.data.sessionKey;
+    }
   } else {
     options['Content-Type'] = 'application/json';
   }
 
-  console.log(`commonService ${path} with data --> ${JSON.stringify(data)}`);
+  console.log(`commonService ${options.path} with data --> ${JSON.stringify(options.data)}`);
   const result = await request(options);
-  console.log(`commonService ${path} response --> ${JSON.stringify(result)}`);
-  return result;
-};
-
-const commonGWService = async (path, method, data) => {
-  const host = getServerHost('commongw');
-  const options = {
-    host,
-    path,
-    data,
-    method,
-    'Content-Type': 'application/json;charset=UTF-8'
-  };
-
-  console.log(`commonGWService ${path} with data --> ${JSON.stringify(data)}`);
-  const result = await request(options);
-  console.log(`commonGWService ${path} response --> ${JSON.stringify(result)}`);
+  console.log(`commonService ${options.path} response --> ${JSON.stringify(result)}`);
   return result;
 };
 
 export default {
   loadData,
-  commonGWService,
   commonService
 };

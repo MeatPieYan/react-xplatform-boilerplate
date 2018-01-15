@@ -1,6 +1,6 @@
 import { request } from '../../shared/utils/fetch';
 import { getServerHost } from '../../shared/utils/utils';
-import { commonGWService, commonService } from '../../shared/utils/service';
+import { commonService } from '../../shared/utils/service';
 
 const sendReq = (domain, path, needWechatInfo = false) => async (ctx, next) => {
   const data = ctx.request.body;
@@ -15,7 +15,8 @@ const sendReq = (domain, path, needWechatInfo = false) => async (ctx, next) => {
   }
 
   try {
-    const result = await commonService(domain, path, 'post', data);
+    // const result = await commonService(domain, path, 'post', data);
+    const result = await commonService(domain, {path, method:'post', data});
     ctx.body = result;
     return next();
   } catch (e) {
@@ -42,12 +43,8 @@ const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') =>
   const data = method === 'post' ? ctx.request.body : {};
   const path = `/gateway/api?serviceName=${serviceName}&serviceVersion=${serviceVersion}`;
 
-  if (data.sessionKey) {
-    options['session-key'] = data.sessionKey;
-  }
-
   try {
-    const result = await commonGWService(path, method, data);
+    const result = await commonService('commongw',{path, method, data});
 
     ctx.body = result;
     return next();
