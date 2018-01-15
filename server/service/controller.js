@@ -43,7 +43,6 @@ const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') =>
   const data = method === 'post' ? ctx.request.body : {};
   const path = `/gateway/api?serviceName=${serviceName}&serviceVersion=${serviceVersion}`;
   const options = { path, method, data };
-  ctx.session = ctx.session || {};
   if (ctx.session.sessionKey) {
     options['session-key'] = ctx.session.sessionKey;
   }

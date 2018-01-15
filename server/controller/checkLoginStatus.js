@@ -1,5 +1,4 @@
 export default function (ctx, next) {
-  ctx.session = ctx.session || {};
   if (ctx.session.sessionKey) {
     next();
   } else {
