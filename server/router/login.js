@@ -12,7 +12,7 @@ const loginRouter = new Router({ prefix: '/login' });
 //   return next();
 // }, sendCommonGW('za.sales.zhongan.app.userPhone.saveAndVerify'), sendCommonGW('za.sales.zhongan.app.auth.login'), writeAuthCookie);
 
-loginRouter.post('/', sendCommonGW('za.sales.zhongan.app.userPhone.saveAndVerify'), writeAuthCookie);
+loginRouter.post('/', sendCommonGW('za.sales.zhongan.app.auth.login'), writeAuthCookie);
 
 router.use(loginRouter.routes());
 module.exports = router;
