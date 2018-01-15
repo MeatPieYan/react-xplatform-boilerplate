@@ -1,9 +1,8 @@
-// import { get, post, request } from '../../shared/fetch';
 import { request } from '../../shared/utils/fetch';
 import { getServerHost } from '../../shared/utils/utils';
+import { commonService } from '../../shared/utils/service';
 
-const sendReq = (platform, path, needWechatInfo = false) => async (ctx, next) => {
-  const host = getServerHost(platform);
+const sendReq = (domain, path, needWechatInfo = false) => async (ctx, next) => {
   const data = ctx.request.body;
 
   if (needWechatInfo) {
@@ -15,23 +14,9 @@ const sendReq = (platform, path, needWechatInfo = false) => async (ctx, next) =>
     Object.assign(data, ctx.request.body);
   }
 
-  const options = {
-    host,
-    path,
-    method: 'post',
-    data
-  };
-
-  if (platform === 'php') {
-    options['Content-Type'] = 'application/x-www-form-urlencoded';
-  } else if (platform === 'java') {
-    options['Content-Type'] = 'application/json';
-  }
-
-  console.log(`call api ${path} with data: ${JSON.stringify(options)}`);
-
   try {
-    const result = await request(options);
+    // const result = await commonService(domain, path, 'post', data);
+    const result = await commonService(domain, {path, method:'post', data});
     ctx.body = result;
     return next();
   } catch (e) {
@@ -40,7 +25,7 @@ const sendReq = (platform, path, needWechatInfo = false) => async (ctx, next) =>
   }
 };
 
-const formatData = (platform = 'java') => async (ctx, next) => {
+const formatData = (domain = 'java') => async (ctx, next) => {
   const result = ctx.body;
 
   if (result && result.success) {
@@ -57,27 +42,16 @@ const formatData = (platform = 'java') => async (ctx, next) => {
 const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') => async (ctx, next) => {
   const data = method === 'post' ? ctx.request.body : {};
   const path = `/gateway/api?serviceName=${serviceName}&serviceVersion=${serviceVersion}`;
-  const host = getServerHost('commongw');
-  const options = {
-    host,
-    path,
-    data,
-    method,
-    'Content-Type': 'application/json;charset=UTF-8'
-  };
-
-  console.log('sendCommonGW service');
-
-
-  if (data.sessionKey) {
-    options['session-key'] = data.sessionKey;
+  const options = { path, method, data };
+  if (ctx.session.sessionKey) {
+    options['session-key'] = ctx.session.sessionKey;
   }
-  options['session-key'] = 'ea46096b115b49c5a4ef7c5a6db44236';
-  console.log(options);
-  console.log(`call api ${path} with data: ${JSON.stringify(options)}`);
+  // options['session-key'] = 'ea46096b115b49c5a4ef7c5a6db44236';
+  // console.log(options);
+  // console.log(`call api ${path} with data: ${JSON.stringify(options)}`);
 
   try {
-    const result = await request(options);
+    const result = await commonService('commongw', options);
     ctx.body = result;
     return next();
   } catch (e) {
