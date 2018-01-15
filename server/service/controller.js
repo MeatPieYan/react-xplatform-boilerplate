@@ -1,6 +1,6 @@
 import { request } from '../../shared/utils/fetch';
 import { getServerHost } from '../../shared/utils/utils';
-import { commonGWService, commonService } from '../../shared/utils/service';
+import { commonService } from '../../shared/utils/service';
 
 const sendReq = (domain, path, needWechatInfo = false) => async (ctx, next) => {
   const data = ctx.request.body;
