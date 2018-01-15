@@ -1,14 +1,15 @@
 
-const pay = require('../controller/pay');
+const { pay, cashier } = require('../controller/pay');
 const Router = require('koa-router');
 
 const router = new Router();
 const payRouter = new Router({ prefix: '/zaPay' });
 
-payRouter.post('/', async (ctx,next) => {
-  console.log('ctx.body ********* ',ctx.body);
-  return next();
-},pay);
+payRouter.post('/', pay);
+payRouter.post('/cashier', (ctx, next) => {
+  console.log('ctx.request.body---------------------------->', ctx.request.body);
+  next();
+}, cashier);
 
 router.use(payRouter.routes());
 

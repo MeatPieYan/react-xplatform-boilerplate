@@ -1,5 +1,6 @@
 import React from 'react';
 import { PieComponent, pieConnect } from 'za-piehelper';
+// import { browserHistory } from 'react-router-dom';
 
 import * as action from './action';
 import rootSaga from '../../rootSaga';
@@ -24,7 +25,7 @@ class TestComp extends PieComponent {
   componentDidMount() {
     this.props.testAction();
     post('/api/test/producer',{activityCode:'MGM0003'}).then(res => {
-      console.log(res);
+      console.log('res',res);
     });
     // loadData('/api/test/producer','post',{activityCode:'MGM0003'}).then(res=> {
     //   console.log(res);
@@ -87,7 +88,10 @@ class TestComp extends PieComponent {
       }
     }
 
-    this.props.dispatch(action.payAction(data));
+    this.props.dispatch(action.payAction(data, (res) => {
+      console.log('res', res);
+      this.props.history.push({ pathname: '/pay', state: res });
+    }));
   }
 
   render() {

@@ -1,4 +1,4 @@
 export const testAction = () => ({ type: 'ACTION_TEST' });
 export const sagaAction = data => ({ type: 'ACTION_SAGA', payload: { text: data } });
 
-export const payAction = data => ({ type: 'ACTION_PAY', payload: { data } });
+export const payAction = (data, callback) => ({ type: 'ACTION_PAY', payload: { data }, onSuccess: callback || null });
