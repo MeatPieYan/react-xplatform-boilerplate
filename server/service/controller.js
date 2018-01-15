@@ -42,10 +42,13 @@ const formatData = (domain = 'java') => async (ctx, next) => {
 const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') => async (ctx, next) => {
   const data = method === 'post' ? ctx.request.body : {};
   const path = `/gateway/api?serviceName=${serviceName}&serviceVersion=${serviceVersion}`;
-
+  const options = { path, method, data };
+  ctx.session = ctx.session || {};
+  if (ctx.session.sessionKey) {
+    options['session-key'] = ctx.session.sessionKey;
+  }
   try {
-    const result = await commonService('commongw',{path, method, data});
-
+    const result = await commonService('commongw', options);
     ctx.body = result;
     return next();
   } catch (e) {

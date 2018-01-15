@@ -27,10 +27,6 @@ const commonService = async (domain, options) => {
     options['Content-Type'] = 'application/x-www-form-urlencoded';
   } else if (domain.toLowerCase() === 'commongw') {
     options['Content-Type'] = 'application/json;charset=UTF-8';
-
-    if (options.data.sessionKey) {
-      options['session-key'] = options.data.sessionKey;
-    }
   } else {
     options['Content-Type'] = 'application/json';
   }
