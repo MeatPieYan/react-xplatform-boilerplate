@@ -1,8 +1,6 @@
 import config from '../../config/serviceConfig';
 
-const getServerHost = (serverName) => {
-  return config['test'][serverName].domain;
-};
+const getServerHost = serverName => config.test[serverName].domain;
 
 const loadThirdPartyScript = (src, onReady) => {
   const script = document.createElement('script');
@@ -23,7 +21,7 @@ const loadThirdPartyScript = (src, onReady) => {
   };
 
   head.appendChild(script);
-}
+};
 
 export default {
   getServerHost,
