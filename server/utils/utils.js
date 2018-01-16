@@ -8,12 +8,12 @@ const result = {
   value: {}
 };
 
-const setErrorRes = (ctx, errorMsg) => {
+const setErrorRes = (ctx, errorMsg, status = 200) => {
   result.success = false;
   result.errorMsg = errorMsg;
   result.value = {};
 
-  ctx.status = 200;
+  ctx.status = status;
   ctx.body = result;
 };
 
