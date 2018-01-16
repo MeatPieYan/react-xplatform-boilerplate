@@ -3,7 +3,7 @@ const nodeSass = require('node-sass');
 const path = require('path');
 const Pie = require('za-pie');
 
-const config = require('../../config/x-platform');
+const config = require('../../config');
 
 // scss compiler hook
 cssModulesRequireHook({
