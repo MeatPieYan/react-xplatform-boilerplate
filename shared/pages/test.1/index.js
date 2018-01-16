@@ -26,5 +26,5 @@ class TestComp extends PieComponent {
 }
 
 export default pieConnect(
-  state => ({ test: state.test.text })
+  state => ({ test: state.activity.activityA.text })
 )(TestComp);
