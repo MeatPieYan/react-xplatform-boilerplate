@@ -1,5 +1,5 @@
 const Router = require('koa-router');
-const { sendReq, formatData } = require('../service/controller');
+const { sendReq, formatData } = require('../utils/controller');
 const checkLoginStatus = require('../controller/checkLoginStatus');
 
 const router = new Router();

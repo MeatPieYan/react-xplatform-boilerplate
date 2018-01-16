@@ -1,13 +1,12 @@
-import { takeLatest, put, call, all } from 'redux-saga/effects';
-import 'isomorphic-fetch';
+import { takeLatest, put, all } from 'redux-saga/effects';
 
 import { sagaAction } from '../pages/test/action';
 import { request } from '../utils/fetch';
 
 function* test() {
-  const data = yield call(() => fetch('//cnodejs.org/api/v1/topics').then(res => res.json()));
+  // const data = yield call(() => fetch('//cnodejs.org/api/v1/topics').then(res => res.json()));
   // debugger
-  yield put(sagaAction(JSON.stringify(data)));
+  yield put(sagaAction('123'));
 }
 
 function* zaPay(payload) {

@@ -1,3 +1,5 @@
+/* global fetch */
+
 require('isomorphic-fetch');
 
 const LOCAL_HOST = '127.0.0.1';

@@ -14,6 +14,7 @@ module.exports = {
     "jsx-quotes": ["error", "prefer-single"],
     "max-len": ["error", { "code": 200 }],
     "no-console": ["error", { allow: ["log", "warn", "error"] }],
+    "no-multi-assign": ["off"],
     "no-param-reassign": ["off"],
     "no-underscore-dangle": ["off"],
     "react/forbid-prop-types": ["off"],

@@ -1,6 +1,4 @@
-import config from '../../config/serviceConfig';
-
-const getServerHost = serverName => config.test[serverName].domain;
+/* eslint-env browser */
 
 const loadThirdPartyScript = (src, onReady) => {
   const script = document.createElement('script');
@@ -9,7 +7,7 @@ const loadThirdPartyScript = (src, onReady) => {
 
   script.src = src;
 
-  script.onload = script.onreadystatechange = function () {
+  script.onload = script.onreadystatechange = () => {
     if (!loaded && (!script.readyState || /loaded|complete/.test(script.readyState))) {
       script.onload = script.onreadystatechange = null;
       loaded = true;
@@ -24,6 +22,5 @@ const loadThirdPartyScript = (src, onReady) => {
 };
 
 export default {
-  getServerHost,
   loadThirdPartyScript
 };

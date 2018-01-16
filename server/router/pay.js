@@ -1,7 +1,7 @@
 
 const { pay } = require('../controller/pay');
 const Router = require('koa-router');
-const { sendCommonGW } = require('../service/controller');
+const { sendCommonGW } = require('../utils/controller');
 
 const router = new Router();
 const payRouter = new Router({ prefix: '/zaPay' });

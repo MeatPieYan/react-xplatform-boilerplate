@@ -83,7 +83,8 @@ class TestComp extends PieComponent {
       }
     }
 
-    this.props.dispatch(action.payAction(data, (res) => { this.props.history.push({ pathname: '/pay', state: res });
+    this.props.dispatch(action.payAction(data, (res) => {
+      this.props.history.push({ pathname: '/pay', state: res });
     }));
   }
 
