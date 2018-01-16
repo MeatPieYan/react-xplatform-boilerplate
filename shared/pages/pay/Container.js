@@ -1,6 +1,8 @@
 import React from 'react';
-
+import * as style from './style.scss';
 import { PieComponent, pieConnect } from 'za-piehelper';
+import * as action from './action';
+import rootSaga from '../../redux/rootSaga';
 
 class PayComp extends PieComponent {
   static loadInitialData(store) {
@@ -12,20 +14,26 @@ class PayComp extends PieComponent {
     const { location} = this.props;
 
     const { callPaymentParam } = location.state;
-
-    formData.action = location.state.callPaymentServerUrl;
-    formData.submit();
+    if (callPaymentParam) {
+      formData.action = location.state.callPaymentServerUrl;
+      formData.submit();
+    }
   }
 
   render() {
-    const { location } = this.props;
-    const { callPaymentParam } = location.state;
-    const arr = Object.keys(callPaymentParam).map(item => <input name={item} value={callPaymentParam[item]} key={item} readOnly='true' />);
-    console.log(arr);
+    debugger;
+    const { location } = this.props
+        ,{ callPaymentParam } = location.state;
+    let arr = null;
+
+    if (callPaymentParam) {
+      arr = Object.keys(callPaymentParam).map(item => <input name={item} value={callPaymentParam[item]} key={item} readOnly='true' />);
+    }
+
     return (
       <div>
         waiting
-        <form
+        <form className={style.form}
           ref='formData'
           method='post'
           target='_self'

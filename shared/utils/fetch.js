@@ -44,7 +44,8 @@ function request(options) {
   return fetch(url, {
     method: options.method,
     body: JSON.stringify(options.data),
-    headers
+    headers,
+    credentials: 'include'
   }).then(res => res.json());
 }
 
