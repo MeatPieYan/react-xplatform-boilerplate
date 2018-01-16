@@ -6,7 +6,7 @@
   "scripts": {
     "build": " gulp && webpack --progress --config ./webpack/webpack.prod.js --env.production",
     "build:performance": "gulp && webpack --display-modules --sort-modules-by size --config ./webpack/webpack.prod.js --env.production",
-    "dev": "cross-env _PLATFORM_=wx gulp --gulpfile gulpfile.dev.js",
+    "dev": "cross-env DEPLOY_ENV=dev _PLATFORM_=wx gulp --gulpfile gulpfile.dev.js",
     "eslint": "./node_modules/.bin/eslint . --ext .js",
     "eslint:fix": "./node_modules/.bin/eslint . --ext .js --fix",
     "node": "nodemon ./server/bin/dev --watch server --watch config",
@@ -75,7 +75,7 @@
     "webpack-merge": "^4.1.1",
     "za-pie": "^1.4.4",
     "za-piedom": "^1.1.1",
-    "za-piehelper": "^1.0.5"
+    "za-piehelper": "^1.0.6"
   },
   "devDependencies": {
     "babel-polyfill": "^6.26.0",

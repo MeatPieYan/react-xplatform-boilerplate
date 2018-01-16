@@ -13,7 +13,7 @@ module.exports = {
     },
     categories: {
       default: {
-        appenders: ['infoLogger', 'access'],
+        appenders: ['infoLogger'],
         level: 'all'
       },
       error: {
@@ -36,7 +36,7 @@ module.exports = {
     },
     categories: {
       default: {
-        appenders: ['infoLogger', 'access'],
+        appenders: ['infoLogger'],
         level: 'all'
       },
       error: {
@@ -59,7 +59,7 @@ module.exports = {
     },
     categories: {
       default: {
-        appenders: ['infoLogger', 'access'],
+        appenders: ['infoLogger'],
         level: 'all'
       },
       error: {
