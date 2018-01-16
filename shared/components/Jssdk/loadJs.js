@@ -1,11 +1,14 @@
-import { post } from '../../fetch';
-import { loadThirdPartyScript } from '../../utils';
+/* eslint-env browser */
+/* global wx */
+
+import { post } from '../../utils/fetch';
+import { loadThirdPartyScript } from '../../utils/utils';
 
 const getJsConfig = (onReady) => {
   // alert('success');
   const resultPromise = post('/api/wechat/getSignSDK', {
     data: {
-      href: encodeURIComponent(location.href)
+      href: encodeURIComponent(window.location.href)
     }
   });
 
@@ -24,7 +27,7 @@ const getJsConfig = (onReady) => {
         'hideMenuItems'
       ],
       fail: (res) => {
-        alert(JSON.stringify(res));
+        console.log(JSON.stringify(res));
       }
     });
 

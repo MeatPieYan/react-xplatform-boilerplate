@@ -1,6 +1,5 @@
-import { request } from '../../shared/utils/fetch';
-import { getServerHost } from '../../shared/utils/utils';
-import { commonService } from '../../shared/utils/service';
+const { commonService } = require('./services');
+const { setErrorRes, setSuccessRes } = require('./utils');
 
 const sendReq = (domain, path, needWechatInfo = false) => async (ctx, next) => {
   const data = ctx.request.body;
@@ -15,29 +14,16 @@ const sendReq = (domain, path, needWechatInfo = false) => async (ctx, next) => {
   }
 
   try {
-    // const result = await commonService(domain, path, 'post', data);
-    const result = await commonService(domain, {path, method:'post', data});
+    const result = await commonService(domain, { path, method: 'post', data });
+    ctx.body = 200;
     ctx.body = result;
     return next();
   } catch (e) {
-    ctx.status = 500;
-    ctx.body = e;
+    setErrorRes(ctx, e.message);
   }
 };
 
-const formatData = (domain = 'java') => async (ctx, next) => {
-  const result = ctx.body;
-
-  if (result && result.success) {
-    ctx.status = 200;
-    ctx.body = result.value;
-
-    return next();
-  }
-
-  ctx.status = 500;
-  ctx.body = result.errorMsg;
-};
+const formatData = () => async (ctx, next) => next();
 
 const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') => async (ctx, next) => {
   const data = method === 'post' ? ctx.request.body : {};
@@ -49,12 +35,16 @@ const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') =>
   }
   try {
     const result = await commonService('commongw', options);
-    ctx.status = 200;
-    ctx.body = result;
+
+    if (result && result.success) {
+      setSuccessRes(ctx, result.value);
+    } else {
+      setErrorRes(ctx, result.errorMsg);
+    }
+
     return next();
   } catch (e) {
-    ctx.status = 500;
-    ctx.body = e;
+    setErrorRes(ctx, e.message);
   }
 };
 

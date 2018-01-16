@@ -1,5 +1,5 @@
 const Router = require('koa-router');
-const { sendCommonGW } = require('../service/controller');
+const { sendCommonGW } = require('../utils/controller');
 
 const router = new Router();
 const smsRouter = new Router({ prefix: '/SMSAuthCode' });

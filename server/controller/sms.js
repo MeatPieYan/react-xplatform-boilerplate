@@ -1,7 +1,7 @@
-const { sendCommonGW } = require('../service/controller');
+// const { sendCommonGW } = require('../service/controller');
 
-//发送短信
-const sendSMSAuthCode = async function (ctx, next) {
+// 发送短信
+const sendSMSAuthCode = async (ctx, next) => {
   console.log('==ctx.request.body====>', ctx.request.body);
   next();
 };
