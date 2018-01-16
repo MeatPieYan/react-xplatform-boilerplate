@@ -26,7 +26,8 @@ class TestComp extends PieComponent {
     );
   }
 }
+TestComp.projectType = 'product';
 
 export default pieConnect(
-  state => ({ test: state.reducer.test.text })
+  state => ({ test: state.test.text })
 )(TestComp);
