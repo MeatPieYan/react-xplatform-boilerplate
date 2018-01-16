@@ -27,7 +27,7 @@ const path = require('path');
 const compiler = webpack(webpackConfig);
 
 const Pie = require('za-pie');
-const config = require('../../config/x-platform');
+const config = require('../../config');
 
 const app = new Pie(path.resolve(__dirname, '../../'), config);
 
