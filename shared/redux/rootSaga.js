@@ -1,5 +1,4 @@
-import { takeLatest, put, all } from 'redux-saga/effects';
-
+import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { sagaAction } from '../pages/test/action';
 import { request } from '../utils/fetch';
 
@@ -28,7 +27,7 @@ function* zaPay(payload) {
     path: '/api/zaPay',
     data: payload.payload.data,
     method: 'POST'
-  }).then(data => (payload.onSuccess(data))));
+  }).then(data => (payload.onSuccess({ pathname: '/pay', state: data.value }))));
 }
 
 export default function* () {

@@ -5,46 +5,44 @@ import * as action from './action';
 import rootSaga from '../../redux/rootSaga';
 
 class PayComp extends PieComponent {
-  static loadInitialData(store) {
-    return super.loadInitData(store, rootSaga, action.testAction);
-  }
+  // static loadInitialData(store) {
+  //   // return super.loadInitData(store, rootSaga, action.testAction);
+  // }
 
   componentDidMount() {
-    const formData = this.refs.formData;
-    const { location} = this.props;
+    const { formData } = this.refs;
+    const { location } = this.props;
 
-    const { callPaymentParam } = location.state;
-    if (callPaymentParam) {
+    if (location.state) {
       formData.action = location.state.callPaymentServerUrl;
       formData.submit();
     }
   }
 
   render() {
-    debugger;
-    const { location } = this.props
-        ,{ callPaymentParam } = location.state;
+    const { location } = this.props;
     let arr = null;
 
-    if (callPaymentParam) {
+    if (location.state) {
+      const { callPaymentParam } = location.state;
       arr = Object.keys(callPaymentParam).map(item => <input name={item} value={callPaymentParam[item]} key={item} readOnly='true' />);
     }
 
     return (
       <div>
         waiting
-        <form className={style.form}
+        <form
+          className={style.form}
           ref='formData'
           method='post'
-          target='_self'
-          >
-            {arr}
-          </form>
+          target='_self' >
+          {arr}
+        </form>
       </div>
     );
   }
 }
 
 export default pieConnect(
-  state=>({test: state.reducer.test.text})
+  state=>({test: state.test.text})
 )(PayComp);

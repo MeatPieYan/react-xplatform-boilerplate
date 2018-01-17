@@ -24,12 +24,9 @@ class TestComp extends PieComponent {
 
   componentDidMount() {
     this.props.testAction();
-    post('/api/test/producer',{activityCode:'MGM0003'}).then(res => {
+    post('/api/test/producer',{ activityCode:'MGM0003'}).then(res => {
       console.log(res);
     });
-    // loadData('/api/test/producer','post',{activityCode:'MGM0003'}).then(res=> {
-    //   console.log(res);
-    // })
   }
 
   zaPay() {
@@ -60,8 +57,8 @@ class TestComp extends PieComponent {
             "insuredPhone": "15607661780",
             "insuredBirthDay": "19891102",
             "insureDate": "20180111145435",
-            "flightNo": "AP7675",
-            "flightDate": "20180116",
+            "flightNo": "MU5152",
+            "flightDate": "20180120",
             "departureCode": "SHA",
             "destinationCode": "PEK",
             "premiumAmount": "5",
@@ -83,9 +80,9 @@ class TestComp extends PieComponent {
       }
     }
 
-    this.props.dispatch(action.payAction(data, (res) => {
-      this.props.history.push({ pathname: '/pay', state: res });
-    }));
+    const { history } = this.props;
+
+    this.props.dispatch(action.payAction(data, history.push));
   }
 
   render() {
@@ -102,5 +99,5 @@ class TestComp extends PieComponent {
 }
 
 export default pieConnect(
-  state => ({ test: state.reducer.test.text })
+  state => ({ test: state.test.text })
 )(TestComp);

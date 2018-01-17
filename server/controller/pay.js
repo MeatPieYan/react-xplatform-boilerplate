@@ -1,11 +1,12 @@
 
 async function pay(ctx, next) {
   const { value } = ctx.body;
-  if (value) {
+  const isEmpty = Object.keys(value).length;
+  if (isEmpty) {
     delete value.orderDetailResult;
     delete value.orderNo;
   }
-  ctx.body = value || ctx.body;
+  ctx.body = ctx.body;
   next();
 }
 
