@@ -4,6 +4,7 @@ import React from 'react';
 import { PieComponent, pieConnect } from 'za-piehelper';
 
 import * as action from './action';
+import * as comAction from '../../redux/common/commonAction';
 import rootSaga from '../../redux/rootSaga';
 import * as style from './style.scss';
 
@@ -19,6 +20,7 @@ class TestComp extends PieComponent {
 
   componentDidMount() {
     this.props.testAction();
+    this.props.dispatch(comAction.loginAction());
   }
 
   zaPay() {
@@ -74,7 +76,7 @@ class TestComp extends PieComponent {
 
     const { history } = this.props;
 
-    this.props.dispatch(action.payAction(data, history.push));
+    this.props.dispatch(comAction.payAction(data, history.push));
   }
 
   render() {

@@ -1,6 +1,6 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
-import { sagaAction } from '../pages/test/action';
-import { request } from '../utils/fetch';
+// import { takeLatest, put, all, call } from 'redux-saga/effects';
+// import { sagaAction } from '../pages/test/action';
+// import { request } from '../utils/fetch';
 // import { takeLatest, put, all } from 'redux-saga/effects';
 
 // import { sagaAction } from '../pages/activity/activityA/action';
