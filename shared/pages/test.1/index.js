@@ -7,19 +7,17 @@ import * as action from './action';
 import * as comAction from '../../redux/common/commonAction';
 import rootSaga from '../../redux/rootSaga';
 import * as style from './style.scss';
-import { appLogin, appShare, appShowLoading } from '../../redux/rootAction';
 
 class TestComp extends PieComponent {
   static loadInitialData(store) {
     return super.loadInitData(store, rootSaga, action.testAction);
   }
+
   constructor() {
     super();
-    this.appLogin = this.appLogin.bind(this);
-    this.appShare = this.appShare.bind(this);
-    this.appShowLoading = this.appShowLoading.bind(this);
     this.zaPay = this.zaPay.bind(this);
   }
+
   componentDidMount() {
     this.props.testAction();
     this.props.dispatch(comAction.loginAction());
@@ -80,41 +78,17 @@ class TestComp extends PieComponent {
 
     this.props.dispatch(comAction.payAction(data, history.push));
   }
-  appLogin() {
-    this.props.appLogin('http://www.baidu.com');
-  }
-  appShare() {
-    this.props.appShare({
-      type: 1,
-      url: 'https://www.baidu.com',
-      imageUrl: 'https://tac-cdn.zhongan.com/wxapp/wxapp_traval_ins_in_one/btn-add.png',
-      title: '测试链接',
-      desc: '测试分享描述desc'
-    });
-  }
-  appSetTitle() {
-    this.props.appSetTitle();
-  }
-  appShowLoading() {
-    this.props.appShowLoading();
-  }
+
   render() {
     return (
       <div>
         <button onClick={this.zaPay}>submit</button>
         <h2 className={style.color}>{this.props.test}</h2>
-        <button onClick={this.appLogin}>登录</button>
-        <button onClick={this.appShare}>分享</button>
-        <button onClick={this.appShowLoading}>调用loading</button>
       </div>
     );
   }
 }
 
 export default pieConnect(
-  state => ({ test: state.test.text }), {
-    appLogin,
-    appShare,
-    appShowLoading
-  }
+  state => ({ test: state.activity.activityA.text })
 )(TestComp);

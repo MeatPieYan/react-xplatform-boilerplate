@@ -3,6 +3,7 @@ import App from './pages/App';
 import TestComp from './pages/activity/activityA/Container';
 import prodComp from './pages/product/productA/Container';
 import TestComp1 from './pages/test.1';
+import TestComp2 from './pages/test.2';
 import PayComp from './pages/pay/Container';
 
 const Home2 = () => (
@@ -24,6 +25,11 @@ const routes = [
         path: '/test1',
         exact: true,
         component: TestComp1
+      },
+      {
+        path: '/test2',
+        exact: true,
+        component: TestComp2
       },
       {
         path: '/productA',
