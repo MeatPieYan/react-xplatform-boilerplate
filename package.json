@@ -6,7 +6,7 @@
   "scripts": {
     "build": " gulp && webpack --progress --config ./webpack/webpack.prod.js --env.production",
     "build:performance": "gulp && webpack --display-modules --sort-modules-by size --config ./webpack/webpack.prod.js --env.production",
-    "dev": "cross-env DEPLOY_ENV=dev _PLATFORM_=h5 gulp --gulpfile gulpfile.dev.js",
+    "dev": "cross-env DEPLOY_ENV=dev _PLATFORM_=wx gulp --gulpfile gulpfile.dev.js",
     "eslint": "./node_modules/.bin/eslint . --ext .js",
     "eslint:fix": "./node_modules/.bin/eslint . --ext .js --fix",
     "node": "nodemon ./server/bin/dev --watch server --watch config",
@@ -68,6 +68,7 @@
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
+    "redux-form": "^7.2.0",
     "redux-saga": "^0.16.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
