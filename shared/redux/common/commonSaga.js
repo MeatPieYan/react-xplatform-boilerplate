@@ -1,27 +1,18 @@
-import { takeLatest, all, call } from 'redux-saga/effects';
-import { request } from '../../utils/fetch';
+import { takeLatest, all } from 'redux-saga/effects';
+import service from '../../utils/service';
 
-
-function* zaPay(payload) {
-  yield call(() => request({
-    path: '/api/zaPay',
-    data: payload.payload.data,
-    method: 'POST'
-  }).then(data => (
-    data.success && payload.onSuccess({ pathname: '/pay', state: data.value })
-  )));
+function* zaPay(action) {
+  const data = yield service.loadData('/api/zaPay', 'post', action.payload);
+  if (data.success) action.onSuccess({ pathname: '/pay', state: data.value });
 }
 
 function* login() {
-  yield call(() => request({
-    path: '/api/login',
-    data: {
-      activityChannel: 500,
-      accessKey: 18782936341,
-      smsVerificationCode: 8815
-    },
-    method: 'POST'
-  }));
+  const data = {
+    activityChannel: 500,
+    accessKey: 18782936341,
+    smsVerificationCode: 8815
+  };
+  yield service.loadData('/api/login', 'post', data);
 }
 
 
