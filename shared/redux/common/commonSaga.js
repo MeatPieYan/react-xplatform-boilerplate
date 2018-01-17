@@ -1,26 +1,19 @@
-import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { request } from '../../utils/fetch';
+import { takeLatest, all, put } from 'redux-saga/effects';
+import service from '../../utils/service';
 import { sagaAction } from '../../pages/test/action';
 import appBridge from '../../utils/AppBridge';
 
-function* zaPay(payload) {
-  yield call(() => request({
-    path: '/api/zaPay',
-    data: payload.payload.data,
-    method: 'POST'
-  }).then(data => (
-    data.success && payload.onSuccess({ pathname: '/pay', state: data.value })
-  )));
+function* zaPay(action) {
+  const data = yield service.loadData('/api/zaPay', 'post', action.payload);
+  if (data.success) action.onSuccess({ pathname: '/pay', state: data.value });
 }
 function* test() {
   // const data = yield call(() => fetch('//cnodejs.org/api/v1/topics').then(res => res.json()));
   // debugger
   yield put(sagaAction('123'));
 }
-
 function* appLogin(action) {
   yield appBridge.login(action.payload.title);
-}
 
 function* appShare(action) {
   const data = yield appBridge.share(action.payload.data);
