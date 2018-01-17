@@ -1,8 +1,8 @@
-import { takeLatest, all } from 'redux-saga/effects';
+import { takeLatest, all, call } from 'redux-saga/effects';
 import service from '../../utils/service';
 
 function* zaPay(action) {
-  const data = yield service.loadData('/api/zaPay', 'post', action.payload);
+  const data = yield call(service.loadData, '/api/zaPay', 'post', action.payload);
   if (data.success) action.onSuccess({ pathname: '/pay', state: data.value });
 }
 
@@ -12,7 +12,7 @@ function* login() {
     accessKey: 18782936341,
     smsVerificationCode: 8815
   };
-  yield service.loadData('/api/login', 'post', data);
+  yield call(service.loadData, '/api/login', 'post', data);
 }
 
 
