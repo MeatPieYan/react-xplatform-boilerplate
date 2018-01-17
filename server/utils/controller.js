@@ -33,6 +33,10 @@ const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') =>
   if (ctx.session.sessionKey) {
     options['session-key'] = ctx.session.sessionKey;
   }
+  // options['session-key'] = 'ea46096b115b49c5a4ef7c5a6db44236';
+  // console.log(options);
+  // console.log(`call api ${path} with data: ${JSON.stringify(options)}`);
+
   try {
     const result = await commonService('commongw', options);
 
