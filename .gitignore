@@ -61,3 +61,4 @@ typings/
 
 # webstorm IDE config file
 .idea
+.DS_Store
