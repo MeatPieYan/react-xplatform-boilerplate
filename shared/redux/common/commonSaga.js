@@ -14,6 +14,7 @@ function* test() {
 }
 function* appLogin(action) {
   yield appBridge.login(action.payload.title);
+}
 
 function* appShare(action) {
   const data = yield appBridge.share(action.payload.data);
@@ -31,5 +32,5 @@ export default function* () {
     takeLatest('ACTION_APP_LOGIN', appLogin),
     takeLatest('ACTION_APP_SHARE', appShare),
     takeLatest('ACTION_APP_LOADING', appShowLoading)
-  ]);
+]);
 }
