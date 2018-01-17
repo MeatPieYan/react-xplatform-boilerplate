@@ -1,21 +1,11 @@
 // const { sendCommonGW } = require('../service/controller');
 
-// 发送短信
-const sendSMSAuthCode = async (ctx, next) => {
-  console.log('==ctx.request.body====>', ctx.request.body);
-  next();
+const rewriteParams = async (ctx, next) => {
+  // 设置默认短信模板
+  ctx.query = Object.assign({ templateNo: 'tac_1608005' }, ctx.query);
+  return next();
 };
 
-// //验证短信
-// const verifySMSCode = async function (ctx, next) {
-//   let body = ctx.request.body;
-//   const { smsVerificationCode } = body;
-//   ctx.request.body = {}
-//   sendCommonGW
-//   next();
-// };
-
 export default {
-  // verifySMSCode,
-  sendSMSAuthCode
+  rewriteParams
 };

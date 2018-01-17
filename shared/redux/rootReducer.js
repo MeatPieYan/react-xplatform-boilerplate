@@ -1,9 +1,15 @@
 import { combineReducers } from 'redux';
-import test from '../pages/test/reducer';
+import activityReducer from './activity/activityReducer';
+import productReducer from './product/productReducer';
+import { env, uiState } from './common/commonReducer';
 
 
 const reducer = combineReducers({
-  test
+  activity: activityReducer,
+  product: productReducer,
+  env,
+  uiState
 });
 
 export default reducer;
+

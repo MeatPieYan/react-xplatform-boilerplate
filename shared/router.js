@@ -1,6 +1,7 @@
 import React from 'react';
 import App from './pages/App';
-import TestComp from './pages/test/Container';
+import TestComp from './pages/activity/activityA/Container';
+import prodComp from './pages/product/productA/Container';
 import TestComp1 from './pages/test.1';
 import PayComp from './pages/pay/Container';
 
@@ -23,6 +24,11 @@ const routes = [
         path: '/test1',
         exact: true,
         component: TestComp1
+      },
+      {
+        path: '/productA',
+        exact: true,
+        component: prodComp
       },
       {
         path: '/abc',

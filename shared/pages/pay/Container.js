@@ -22,7 +22,6 @@ class PayComp extends PieComponent {
   render() {
     const { location } = this.props;
     let arr = null;
-
     if (location.state) {
       const { callPaymentParam } = location.state;
       arr = Object.keys(callPaymentParam).map(item => <input name={item} value={callPaymentParam[item]} key={item} readOnly='true' />);
@@ -43,6 +42,4 @@ class PayComp extends PieComponent {
   }
 }
 
-export default pieConnect(
-  state=>({test: state.test.text})
-)(PayComp);
+export default pieConnect()(PayComp);
