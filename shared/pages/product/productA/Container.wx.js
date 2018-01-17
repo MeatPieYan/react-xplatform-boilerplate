@@ -4,7 +4,6 @@ import { PieComponent, pieConnect } from 'za-piehelper';
 import * as action from './action';
 import rootSaga from '../../../redux/rootSaga';
 import * as style from './style.scss';
-import FinalFieldLevelValidationForm from './form';
 import T from '../../test.1';
 
 class TestComp extends PieComponent {
@@ -21,7 +20,6 @@ class TestComp extends PieComponent {
       <div>
         <h2 className={style.color}>{this.props.test}</h2>
         wx page
-        <FinalFieldLevelValidationForm />
         <T />
       </div>
     );

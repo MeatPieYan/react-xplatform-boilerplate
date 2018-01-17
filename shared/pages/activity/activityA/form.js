@@ -49,7 +49,57 @@ const renderField = ({
     </div>
   </div>
 );
+const formConf = [
+  {
+    name: 'username',
+    type: 'text',
+    label: '用户名'
+  },
+  {
+    name: 'age',
+    type: 'text',
+    label: '年龄'
+  }
+];
 
+const generateForm = (conf) => {
+  if (!Array.isArray(conf)) return false;
+  const getComponent = (str) => {
+    let comp;
+    switch (str) {
+      case 'text':
+        comp = renderField;
+        break;
+      default:
+        comp = renderField;
+    }
+    return comp;
+  };
+  const getValidate = (str) => {
+    let validate;
+    switch (str) {
+      case 'username':
+        validate = [required, maxLength15, minLength2];
+        break;
+      case 'age':
+        validate = [required, number, minValue18];
+        break;
+      default:
+        validate = [];
+    }
+    return validate;
+  };
+  return conf.map((item, i) => (
+    <Field
+      key={`item-${i}`}
+      name={item.name}
+      type={item.type}
+      component={getComponent(item.type)}
+      label={item.label}
+      validate={getValidate(item.name)}
+    />
+  ));
+};
 class FieldLevelValidationForm extends C {
   render() {
     const {
@@ -57,7 +107,10 @@ class FieldLevelValidationForm extends C {
     } = this.props;
     return (
       <form onSubmit={handleSubmit}>
-        <Field
+        {
+          generateForm(formConf)
+        }
+        {/* <Field
           name='username'
           type='text'
           component={renderField}
@@ -87,7 +140,7 @@ class FieldLevelValidationForm extends C {
           component={renderField}
           label='Phone number'
           validate={[required, phoneNumber]}
-        />
+        /> */}
         <div>
           <button type='submit' disabled={submitting}>
             Submit
