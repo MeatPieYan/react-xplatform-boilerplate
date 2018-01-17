@@ -6,7 +6,7 @@ class AppBridge {
       if (appSDK instanceof Object) {
         this.appSDK = appSDK;
       } else {
-        throw new Error('请在众安App中打开此页面');
+        console.error('请在众安App中打开此页面');
       }
     }
   }
