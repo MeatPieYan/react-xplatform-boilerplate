@@ -19,6 +19,9 @@ const serviceConfig = {
     },
     activitygw: {
       domain: 'http://13674-tac-sales-za-sales-activity.test.za.net'
+    },
+    userAction: {
+      domain: 'https://tac-action-test.zhongan.com'
     }
   },
   test: {
@@ -36,6 +39,9 @@ const serviceConfig = {
     },
     activitygw: {
       domain: 'http://13674-tac-sales-za-sales-activity.test.za.net'
+    },
+    userAction: {
+      domain: 'https://tac-action-test.zhongan.com'
     }
   },
   pre: {
@@ -53,6 +59,9 @@ const serviceConfig = {
     },
     activitygw: {
       domain: 'http://13674-tac-sales-za-sales-activity.test.za.net'
+    },
+    userAction: {
+      domain: 'https://tac-action-pre.zhongan.com'
     }
   },
   prd: {
@@ -70,6 +79,9 @@ const serviceConfig = {
     },
     activitygw: {
       domain: 'http://13674-tac-sales-za-sales-activity.test.za.net'
+    },
+    userAction: {
+      domain: 'https://tac-action-prd.zhongan.com'
     }
   }
 };

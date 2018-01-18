@@ -78,7 +78,7 @@
     "webpack-merge": "^4.1.1",
     "za-pie": "^1.4.5",
     "za-piedom": "^1.1.1",
-    "za-piehelper": "^1.0.11"
+    "za-piehelper": "^1.0.12"
   },
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
