@@ -2,7 +2,7 @@
 require('babel-polyfill');
 require('babel-register')({
   presets: ['env'],
-  plugins: ['add-module-exports']
+  plugins: ['add-module-exports', 'transform-object-rest-spread']
 });
 
 // scss compiler hook

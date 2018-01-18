@@ -26,6 +26,7 @@ class TestComp extends PieComponent {
   }
 }
 // TestComp.projectType = 'activity';
+TestComp.pageId = '123';
 
 export default pieConnect(
   state => ({ test: state.activity.activityA.text })

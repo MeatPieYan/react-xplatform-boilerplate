@@ -30,7 +30,7 @@ class TestComp extends PieComponent {
   render() {
     return (
       <div>
-
+        <h2 className={style.color}>{this.props.test}</h2>
         <h2 className={style.color}>{this.props.test}</h2>
         h5 page
         <T />
@@ -38,6 +38,8 @@ class TestComp extends PieComponent {
     );
   }
 }
+
+TestComp.pageId = '123';
 
 export default pieConnect(
   state => ({ test: state.activity.activityA.text })

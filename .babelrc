@@ -2,6 +2,7 @@
   "presets": ["env", "react"],
   "plugins": [
     "add-module-exports",
-    "transform-runtime"
+    "transform-runtime",
+    "transform-object-rest-spread"
   ]
 }
