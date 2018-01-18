@@ -26,7 +26,6 @@ class TestComp extends PieComponent {
   zaPay() {
     const data = {
       order: {
-        activityChannel: 500,
         tradeType: 'pc'
       },
       orderDetails: [

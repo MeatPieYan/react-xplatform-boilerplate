@@ -1,3 +1,11 @@
+/**
+ * ------------------------------------------------------------------
+ * import * as actions from './commonAction';
+ * ...
+ *  case actions.SET_UI_STATE:
+ * ------------------------------------------------------------------
+ */
+
 const uiState = (state = {}, action) => {
   switch (action.type) {
     case 'SET_UI_STATE':

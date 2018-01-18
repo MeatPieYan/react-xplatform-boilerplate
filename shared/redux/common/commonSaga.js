@@ -1,4 +1,5 @@
 import { takeLatest, all, call } from 'redux-saga/effects';
+import * as actions from './commonAction';
 import service from '../../utils/service';
 import appBridge from '../../utils/AppBridge';
 // import { LOAD_ENV } from './commonAction';
@@ -22,9 +23,9 @@ function* appShowLoading() {
 
 export default function* () {
   yield all([
-    takeLatest('ACTION_PAY', zaPay),
-    takeLatest('ACTION_APP_LOGIN', appLogin),
-    takeLatest('ACTION_APP_SHARE', appShare),
-    takeLatest('ACTION_APP_LOADING', appShowLoading)
+    takeLatest(actions.COM_PAY, zaPay),
+    takeLatest(actions.COM_APP_LOGIN, appLogin),
+    takeLatest(actions.COM_APP_SHARE, appShare),
+    takeLatest(actions.COM_APP_LOADING, appShowLoading)
   ]);
 }
