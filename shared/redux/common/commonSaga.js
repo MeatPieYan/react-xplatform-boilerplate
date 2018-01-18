@@ -16,15 +16,6 @@ function* appLogin(action) {
   yield appBridge.login(action.payload.title);
 }
 
-function* login() {
-  const data = {
-    activityChannel: 500,
-    accessKey: 18782936341,
-    smsVerificationCode: 8815
-  };
-  yield call(service.loadData, '/api/login', 'post', data);
-}
-
 function* appShare(action) {
   const data = yield appBridge.share(action.payload.data);
   yield put(sagaAction(JSON.stringify(data)));
@@ -38,7 +29,6 @@ export default function* () {
   yield all([
     takeLatest('ACTION_PAY', zaPay),
     takeLatest('ACTION_TEST', test),
-    takeLatest('loginAction', login),
     takeLatest('ACTION_APP_LOGIN', appLogin),
     takeLatest('ACTION_APP_SHARE', appShare),
     takeLatest('ACTION_APP_LOADING', appShowLoading)
