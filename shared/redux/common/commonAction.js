@@ -3,9 +3,9 @@
  * ------------------------------------------------------------------
  * the constants of the actions
  * action的常量需要单独申明
- * COM/渠道_DST   公共action
- * PRO/渠道_DST   产品action
- * ACT/渠道_DST   活动action
+ * COM_渠道_DST   公共action
+ * PRO_渠道_DST   产品action
+ * ACT_渠道_DST   活动action
  * ------------------------------------------------------------------
  */
 
