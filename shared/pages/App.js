@@ -6,11 +6,11 @@ import { PieComponent, pieConnect } from 'za-piehelper';
 import { getXPath } from '../utils/utils';
 import Loading from '../components/common/Loading';
 import Error from '../components/common/Error';
+import { sendPointInfo } from '../redux/common/commonAction';
 
 class App extends PieComponent {
   onAnywhereClick(e) {
-    console.log(getXPath(e.target));
-    // this.props.dispatch()
+    this.props.sendPointInfo(getXPath(e.target));
   }
 
   render() {
@@ -40,5 +40,7 @@ export default pieConnect(
     showLoading: state.uiState.showLoading,
     errorMsg: state.uiState.errorMsg,
     showError: state.uiState.showError
-  })
+  }),{
+    sendPointInfo
+  }
 )(App);

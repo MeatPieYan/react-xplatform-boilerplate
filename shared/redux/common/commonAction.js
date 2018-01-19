@@ -35,7 +35,7 @@ export const payAction = (data, callback) => ({ type: COM_PAY, payload: data, on
 export const loginAction = data => ({ type: COM_LOGIN, payload: { text: data } });
 
 // 发送埋点信息
-export const sendPointInfo = () => ({ type: COM_SEND_POINT_INFO });
+export const sendPointInfo = xPath => ({ type: COM_SEND_POINT_INFO, payload: xPath });
 
 // app客户端调用
 export const appLogin = data => ({ type: COM_APP_LOGIN, payload: { text: data } });
