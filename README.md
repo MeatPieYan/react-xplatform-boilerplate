@@ -3,6 +3,7 @@ The boilerplate for Cross-platform solution
 
 #redux
   action：
+
     命名规范：
     /*
     * the constants of the actions
@@ -34,6 +35,7 @@ The boilerplate for Cross-platform solution
 
 
   saga:
+
     import * as actions from './commonAction';
     ...
     export default function* () {
