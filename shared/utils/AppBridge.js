@@ -2,6 +2,7 @@
 class AppBridge {
   constructor() {
     if (typeof window !== 'undefined') {
+      /* eslint-env browser */
       const appSDK = window.ZAIAppJSInterface;
       if (appSDK instanceof Object) {
         this.appSDK = appSDK;
