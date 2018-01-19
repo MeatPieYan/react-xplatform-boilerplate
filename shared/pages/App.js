@@ -4,11 +4,11 @@ import { renderRoutes } from 'react-router-config';
 import { PieComponent, pieConnect } from 'za-piehelper';
 
 import { getXPath } from '../utils/utils';
+import { sendPointInfo } from '../redux/common/commonAction';
 
 class App extends PieComponent {
   onAnywhereClick(e) {
-    console.log(getXPath(e.target));
-    // this.props.dispatch()
+    this.props.sendPointInfo(getXPath(e.target));
   }
 
   render() {
@@ -26,4 +26,6 @@ App.propTypes = {
   route: PropTypes.object.isRequired
 };
 
-export default pieConnect()(App);
+export default pieConnect(null, {
+  sendPointInfo
+})(App);
