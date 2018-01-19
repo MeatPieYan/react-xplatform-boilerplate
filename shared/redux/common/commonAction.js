@@ -17,6 +17,13 @@ export const COM_APP_LOGIN = 'COM_APP_LOGIN';
 export const COM_APP_SHARE = 'COM_APP_SHARE';
 export const COM_APP_SET_TITLE = 'COM_APP_SET_TITLE';
 export const COM_APP_LOADING = 'COM_APP_LOADING';
+export const COM_SET_UI_STATE = 'COM_SET_UI_STATE';
+
+export const COM_UI_SHOW_LOADING = 'COM_UI_SHOW_LOADING';
+export const COM_UI_HIDE_LOADING = 'COM_UI_HIDE_LOADING';
+export const COM_UI_SHOW_ERROR = 'COM_UI_SHOW_ERROR';
+export const COM_UI_HIDE_ERROR = 'COM_UI_HIDE_ERROR';
+
 
 /**
  * ------------------------------------------------------------------
@@ -35,3 +42,14 @@ export const appLogin = data => ({ type: COM_APP_LOGIN, payload: { text: data } 
 export const appShare = data => ({ type: COM_APP_SHARE, payload: { data } });
 export const appSetTitle = title => ({ type: COM_APP_SET_TITLE, payload: { title } });
 export const appShowLoading = show => ({ type: COM_APP_LOADING, payload: { show } });
+
+// set ui state
+export const comSetUIState = data => ({ type: COM_SET_UI_STATE, payload: data });
+
+// common ui
+// loading 显示/隐藏
+export const comShowLoading = () => ({ type: COM_UI_SHOW_LOADING });
+export const comHideLoading = () => ({ type: COM_UI_HIDE_LOADING });
+// error 显示/隐藏
+export const comShowError = msg => ({ type: COM_UI_SHOW_ERROR, payload: { msg } });
+export const comHideError = msg => ({ type: COM_UI_HIDE_ERROR, payload: { msg } });

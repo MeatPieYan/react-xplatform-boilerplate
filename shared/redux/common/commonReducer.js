@@ -6,11 +6,13 @@
  * ------------------------------------------------------------------
  */
 
+import * as actions from './commonAction';
+
 const uiState = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_UI_STATE':
+    case actions.COM_SET_UI_STATE:
       return {
-        // ...state,
+        ...state,
         [action.payload.key]: action.payload.value
       };
     default:
