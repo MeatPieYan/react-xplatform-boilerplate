@@ -22,7 +22,6 @@ class App extends PieComponent {
     return (
       <div onClick={this.onAnywhereClick.bind(this)}>
         <Loading isShow={showLoading} />
-        <Error errorMsg={errorMsg} showError={showError} />
         <h1>Root</h1>
         {/* child routes won't render without this */}
         {renderRoutes(this.props.route.routes)}
