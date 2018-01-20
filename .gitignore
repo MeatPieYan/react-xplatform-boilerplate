@@ -61,7 +61,10 @@ typings/
 
 # webstorm IDE config file
 .idea
+
+# mac osx
 .DS_Store
 */.DS_Store
+**/.DS_Store
 
 .vscode

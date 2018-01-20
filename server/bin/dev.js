@@ -17,6 +17,12 @@ require('css-modules-require-hook')({
   generateScopedName: '[path][name]__[local]'
 });
 
+// image compiler hook
+require('asset-require-hook')({
+  extensions: ['jpg', 'png', 'gif', 'webp'],
+  limit: 8192
+});
+
 const webpack = require('webpack');
 const webpackConfig = require('../../../webpack/webpack.dev');
 const webpackDevMiddleware = require('koa-webpack-dev-middleware');

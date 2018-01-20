@@ -7,7 +7,7 @@ import * as style from './style.scss';
 
 import T from '../../test.1';
 import { comShowLoading, comHideLoading, setMessage } from '../../../redux/common/commonAction';
-
+import close from './close.png';
 
 class TestComp extends PieComponent {
   static loadInitialData(store) {
@@ -38,9 +38,9 @@ class TestComp extends PieComponent {
         <h2 className={style.color}>{this.props.test}</h2>
         <h2 className={style.color}>{this.props.test}</h2>
         h5 page
-        <T />
         <button onClick={this.showloading} >showloading</button>
         <button onClick={this.showError} >showError</button>
+        <img src={close} alt='' />
       </div>
     );
   }
