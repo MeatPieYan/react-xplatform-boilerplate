@@ -6,10 +6,9 @@
  * ------------------------------------------------------------------
  */
 
-import { COM_LOAD_NODE_ENV, COM_SET_UI_STATE, COM_SET_MESSAGE, COM_RESET_MESSAGE } from './commonAction';
+import { COM_LOAD_NODE_ENV, COM_SET_UI_PARAM, COM_SET_MESSAGE, COM_RESET_MESSAGE } from './commonAction';
 
 const message = (state = [], action) => {
-  // debugger;
   switch (action.type) {
     case COM_SET_MESSAGE:
       return action.payload.message;
@@ -22,7 +21,7 @@ const message = (state = [], action) => {
 
 const uiState = (state = {}, action) => {
   switch (action.type) {
-    case COM_SET_UI_STATE:
+    case COM_SET_UI_PARAM:
       return {
         ...state,
         [action.payload.key]: action.payload.value
@@ -42,7 +41,7 @@ const node = (state = { env: '' }, action) => {
     default:
       return state;
   }
-}
+};
 
 export default {
   uiState,

@@ -26,7 +26,7 @@ class MessageModal extends React.Component {
 
     if (Array.isArray(text)) {
       text = text.map((t) => {
-        if (t.startsWith('Error: Response timeout')) return '系统异常，请重试';
+        if (t.startsWith('Error: Response timeout') || t.startsWith('Failed to fetch')) return '系统异常，请重试';
         return t;
       });
     }

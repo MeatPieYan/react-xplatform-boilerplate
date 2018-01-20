@@ -7,8 +7,6 @@ import rootSaga from '../../../redux/rootSaga';
 import * as style from './style.scss';
 
 import T from '../../test.1';
-import { get, post } from '../../../utils/fetch';
-import { loadData } from '../../../utils/service';
 // import Jssdk from '../../components/Jssdk/index';
 
 
@@ -19,9 +17,6 @@ class TestComp extends PieComponent {
 
   componentDidMount() {
     this.props.testAction();
-    post('/api/test/producer',{ activityCode:'MGM0003'}).then(res => {
-      console.log(res);
-    });
   }
 
   render() {

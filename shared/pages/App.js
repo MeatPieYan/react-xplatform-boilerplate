@@ -8,13 +8,13 @@ import { Loading, MessageModal } from '../components';
 import { sendPointInfo, loadNodeEnv, resetMessage } from '../redux/common/commonAction';
 
 class App extends React.PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.onAnywhereClick = this.onAnywhereClick.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.loadNodeEnv();
   }
 
@@ -27,12 +27,12 @@ class App extends React.PureComponent {
       showLoading,
       message,
       route,
-      resetMessage
+      resetMessage: resetFn
     } = this.props;
     return (
       <div onClick={this.onAnywhereClick}>
         <Loading isShow={showLoading} />
-        <MessageModal text={message} onPress={resetMessage} />
+        <MessageModal text={message} onPress={resetFn} />
 
         {/* child routes won't render without this */}
         <div>
@@ -49,7 +49,7 @@ App.defaultProps = {
   loadNodeEnv: () => {},
   sendPointInfo: () => {},
   resetMessage: () => {}
-}
+};
 
 App.propTypes = {
   route: PropTypes.object.isRequired,

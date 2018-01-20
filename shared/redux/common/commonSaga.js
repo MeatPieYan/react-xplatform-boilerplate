@@ -9,17 +9,12 @@ const envSelector = state => state.env;
 const nodeEnvSelector = state => state.node.env;
 
 function* zaPay(action) {
-  const data = yield call(loadData, '/api/zaPay', 'post', action.payload);
-  if (data.success) action.onSuccess({ pathname: '/pay', state: data.value });
-}
-
-function* setUISate(key, value) {
-  yield put(actions.comSetUIState({ key, value }));
-}
-
-function* comShowError(action) {
-  yield put(actions.comSetUIState({ key: 'errorMsg', value: action.payload.msg }));
-  yield put(actions.comSetUIState({ key: 'showError', value: true }));
+  try {
+    const data = yield call(loadData, '/api/zaPay', 'post', action.payload);
+    if (data.success) action.onSuccess({ pathname: '/pay', state: data.value });
+  } catch (e) {
+    yield put(actions.setMessage([e.message]));
+  }
 }
 
 function* appLogin(action) {
@@ -35,90 +30,102 @@ function* appShowLoading() {
 }
 
 function* enterPage(action) {
-  const { pageId, pageName } = action.payload;
-  const env = yield select(envSelector);
-  const postData = {
-    logTime: Date.now(),
-    appType: '2',
-    appId: 'h5', // TODO
-    eventType: 'pv',
-    sessionId: '', // TODO
-    userId: '', // TODO
-    clientIp: '',
-    pageId,
-    pageName: pageName || '',
-    asmId: '',
-    asmName: '',
-    url: env.client ? env.client.url : '',
-    queryParam: env.client ? env.client.search : '',
-    scene: '',
-    subscene: env.client ? env.client.query.subscene : '',
-    extraInfo: '',
-    platform: env.client ? env.client.details.os.name : '',
-    system: env.client ? env.client.details.os.version : '',
-    appVersion: '', // TODO
-    sdkVersion: '', // TODO
-    language: '',
-    fontSizeSetting: '',
-    brand: env.client ? env.client.details.device.manufacturer : '',
-    model: env.client ? env.client.details.device.model : '',
-    pixelRatio: '',
-    screenWidth: '',
-    screenHeight: '',
-    windowWidth: '',
-    windowHeight: '',
-    resolution: ''
-  };
+  try {
+    const { pageId, pageName } = action.payload;
+    const env = yield select(envSelector);
+    const postData = {
+      logTime: Date.now(),
+      appType: '2',
+      appId: 'h5', // TODO
+      eventType: 'pv',
+      sessionId: '', // TODO
+      userId: '', // TODO
+      clientIp: '',
+      pageId,
+      pageName: pageName || '',
+      asmId: '',
+      asmName: '',
+      url: env.client ? env.client.url : '',
+      queryParam: env.client ? env.client.search : '',
+      scene: '',
+      subscene: env.client ? env.client.query.subscene : '',
+      extraInfo: '',
+      platform: env.client ? env.client.details.os.name : '',
+      system: env.client ? env.client.details.os.version : '',
+      appVersion: '', // TODO
+      sdkVersion: '', // TODO
+      language: '',
+      fontSizeSetting: '',
+      brand: env.client ? env.client.details.device.manufacturer : '',
+      model: env.client ? env.client.details.device.model : '',
+      pixelRatio: '',
+      screenWidth: '',
+      screenHeight: '',
+      windowWidth: '',
+      windowHeight: '',
+      resolution: ''
+    };
 
-  let nodeEnv = yield select(nodeEnvSelector);
-  if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
+    let nodeEnv = yield select(nodeEnvSelector);
+    if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
 
-  // yield call(sendUserAction, nodeEnv, postData);
+    console.log('发送pv:', 'postData');
+
+    yield call(sendUserAction, nodeEnv, postData);
+  } catch (e) {
+    yield put(actions.setMessage([e.message]));
+  }
 }
 
 function* sendPointInfo(action) {
-  const xPath = action.payload;
-  const env = yield select(envSelector);
+  try {
+    const xPath = action.payload;
+    const env = yield select(envSelector);
 
-  const postData = {
-    logTime: Date.now(),
-    appType: '2',
-    appId: 'h5', // TODO
-    eventType: 'asm',
-    sessionId: '', // TODO
-    userId: '', // TODO
-    clientIp: '',
-    pageId: env.pageId,
-    pageName: env.pageName || '',
-    asmId: '',
-    asmName: '',
-    url: env.client ? env.client.url : '',
-    queryParam: env.client ? env.client.search : '',
-    scene: '',
-    subscene: env.client ? env.client.query.subscene : '',
-    extraInfo: {
-      xPath
-    },
-    platform: env.client ? env.client.details.os.name : '',
-    system: env.client ? env.client.details.os.version : '',
-    appVersion: '', // TODO
-    sdkVersion: '', // TODO
-    language: '',
-    fontSizeSetting: '',
-    brand: env.client ? env.client.details.device.manufacturer : '',
-    model: env.client ? env.client.details.device.model : '',
-    pixelRatio: '',
-    screenWidth: '',
-    screenHeight: '',
-    windowWidth: '',
-    windowHeight: '',
-    resolution: ''
-  };
+    const postData = {
+      logTime: Date.now(),
+      appType: '2',
+      appId: 'h5', // TODO
+      eventType: 'asm',
+      sessionId: '', // TODO
+      userId: '', // TODO
+      clientIp: '',
+      pageId: env.pageId,
+      pageName: env.pageName || '',
+      asmId: '',
+      asmName: '',
+      url: env.client ? env.client.url : '',
+      queryParam: env.client ? env.client.search : '',
+      scene: '',
+      subscene: env.client ? env.client.query.subscene : '',
+      extraInfo: {
+        xPath
+      },
+      platform: env.client ? env.client.details.os.name : '',
+      system: env.client ? env.client.details.os.version : '',
+      appVersion: '', // TODO
+      sdkVersion: '', // TODO
+      language: '',
+      fontSizeSetting: '',
+      brand: env.client ? env.client.details.device.manufacturer : '',
+      model: env.client ? env.client.details.device.model : '',
+      pixelRatio: '',
+      screenWidth: '',
+      screenHeight: '',
+      windowWidth: '',
+      windowHeight: '',
+      resolution: ''
+    };
 
-  let nodeEnv = yield select(nodeEnvSelector);
-  if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
+    let nodeEnv = yield select(nodeEnvSelector);
+    if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
 
-  // yield call(sendUserAction, nodeEnv, postData);
+    console.log('发送userAction:', 'postData');
+
+    // yield call(sendUserAction, nodeEnv, postData);
+  } catch (e) {
+    yield put(actions.setMessage([e.message]));
+  }
 }
 
 function* getNodeEnv() {
@@ -126,7 +133,7 @@ function* getNodeEnv() {
     const env = yield call(loadNodeEnv);
     yield put(actions.loadNodeEnvSuccess(env));
   } catch (e) {
-    console.log(e);
+    yield put(actions.setMessage([e.message]));
   }
 }
 
@@ -140,10 +147,6 @@ export default function* () {
     takeLatest(actions.COM_SEND_POINT_INFO, sendPointInfo),
     takeLatest(pieAction.GLOBAL_ENTER_PAGE, enterPage),
 
-    takeLatest(actions.COM_UI_SHOW_LOADING, setUISate, 'showLoading', true),
-    takeLatest(actions.COM_UI_HIDE_LOADING, setUISate, 'showLoading', false),
-    // takeLatest(actions.COM_UI_SHOW_ERROR, comShowError),
-    // takeLatest(actions.COM_UI_HIDE_ERROR, setUISate, 'showError', false),
     takeLatest(actions.COM_LOAD_NODE_ENV.REQUEST, getNodeEnv)
   ]);
 }

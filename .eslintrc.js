@@ -21,6 +21,7 @@ module.exports = {
     "no-underscore-dangle": ["off"],
     "react/forbid-prop-types": ["off"],
     "react/jsx-boolean-value": ["error", "always"],
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
+    "react/no-array-index-key": ["off"]
   }
 };

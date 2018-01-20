@@ -19,9 +19,7 @@ testRouter.get('/testLogin', checkLoginStatus, (ctx, next) => {
   next();
 });
 
-testRouter.get('/test', (ctx, next) => {
-  return ctx.redirect('http://localhost:8080/test')
-})
+testRouter.get('/test', ctx => ctx.redirect('http://localhost:8080/test'));
 
 router.use(testRouter.routes());
 
