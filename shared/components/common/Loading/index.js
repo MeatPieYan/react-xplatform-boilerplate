@@ -25,7 +25,7 @@ Loading.defaultProps = {
   isShow: false
 };
 
-Loading.prototype = {
+Loading.propTypes = {
   isShow: PropTypes.bool
 };
 

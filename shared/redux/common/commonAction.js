@@ -23,8 +23,10 @@ export const COM_SET_UI_STATE = 'COM_SET_UI_STATE';
 
 export const COM_UI_SHOW_LOADING = 'COM_UI_SHOW_LOADING';
 export const COM_UI_HIDE_LOADING = 'COM_UI_HIDE_LOADING';
-export const COM_UI_SHOW_ERROR = 'COM_UI_SHOW_ERROR';
-export const COM_UI_HIDE_ERROR = 'COM_UI_HIDE_ERROR';
+// export const COM_UI_SHOW_ERROR = 'COM_UI_SHOW_ERROR';
+// export const COM_UI_HIDE_ERROR = 'COM_UI_HIDE_ERROR';
+export const COM_SET_MESSAGE = 'COM_SET_MESSAGE';
+export const COM_RESET_MESSAGE = 'COM_RESET_MESSAGE';
 
 
 /**
@@ -55,5 +57,8 @@ export const comSetUIState = data => ({ type: COM_SET_UI_STATE, payload: data })
 export const comShowLoading = () => ({ type: COM_UI_SHOW_LOADING });
 export const comHideLoading = () => ({ type: COM_UI_HIDE_LOADING });
 // error 显示/隐藏
-export const comShowError = msg => ({ type: COM_UI_SHOW_ERROR, payload: { msg } });
-export const comHideError = msg => ({ type: COM_UI_HIDE_ERROR, payload: { msg } });
+// export const comShowError = msg => ({ type: COM_UI_SHOW_ERROR, payload: { msg } });
+// export const comHideError = msg => ({ type: COM_UI_HIDE_ERROR, payload: { msg } });
+
+export const setMessage = message => ({ type: COM_SET_MESSAGE, payload: { message } });
+export const resetMessage = () => ({ type: COM_RESET_MESSAGE });

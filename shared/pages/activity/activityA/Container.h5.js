@@ -7,9 +7,8 @@ import * as style from './style.scss';
 
 import T from '../../test.1';
 import { get, post } from '../../../utils/fetch';
-import { loadData } from '../../../utils/service';
 // import Jssdk from '../../components/Jssdk/index';
-import { comShowLoading, comHideLoading, comShowError } from '../../../redux/common/commonAction';
+import { comShowLoading, comHideLoading, setMessage } from '../../../redux/common/commonAction';
 
 
 class TestComp extends PieComponent {
@@ -28,16 +27,14 @@ class TestComp extends PieComponent {
     post('/api/test/producer', { activityCode: 'MGM0003' }).then((res) => {
       console.log(res);
     });
-    // this.props.comShowLoading();
   }
 
   showloading() {
     this.props.comShowLoading();
-    // this.props.comHideLoading();
   }
 
   showError() {
-    this.props.comShowError('errorMsgerrorMsgerrorMsgerrorMsgerrorMsgerrorMsgerrorMsgerrorMsgerrorMsgerrorMsgerrorMsg');
+    this.props.setMessage(['123', '123']);
   }
 
   render() {
@@ -47,7 +44,7 @@ class TestComp extends PieComponent {
         <h2 className={style.color}>{this.props.test}</h2>
         h5 page
         <T />
-        <div onClick={this.showloading} >showloading</div>
+        <button onClick={this.showloading} >showloading</button>
         <button onClick={this.showError} >showError</button>
       </div>
     );
@@ -61,6 +58,6 @@ export default pieConnect(
   {
     comShowLoading,
     comHideLoading,
-    comShowError
+    setMessage
   }
 )(TestComp);

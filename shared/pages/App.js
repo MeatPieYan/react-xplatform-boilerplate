@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { renderRoutes } from 'react-router-config';
-import { PieComponent, pieConnect } from 'za-piehelper';
+import { pieConnect } from 'za-piehelper';
 
 import { getXPath } from '../utils/utils';
-import Loading from '../components/common/Loading';
-import Error from '../components/common/Error';
-import { sendPointInfo, loadNodeEnv } from '../redux/common/commonAction';
+import { Loading, MessageModal } from '../components';
+import { sendPointInfo, loadNodeEnv, resetMessage } from '../redux/common/commonAction';
 
-class App extends PieComponent {
+class App extends React.PureComponent {
   constructor() {
     super();
 
@@ -26,31 +25,48 @@ class App extends PieComponent {
   render() {
     const {
       showLoading,
-      errorMsg,
-      showError
+      message,
+      route,
+      resetMessage
     } = this.props;
     return (
       <div onClick={this.onAnywhereClick}>
         <Loading isShow={showLoading} />
+        <MessageModal text={message} onPress={resetMessage} />
+
         {/* child routes won't render without this */}
-        {renderRoutes(this.props.route.routes)}
+        <div>
+          {renderRoutes(route.routes)}
+        </div>
       </div>
     );
   }
 }
 
+App.defaultProps = {
+  showLoading: false,
+  message: [],
+  loadNodeEnv: () => {},
+  sendPointInfo: () => {},
+  resetMessage: () => {}
+}
+
 App.propTypes = {
-  route: PropTypes.object.isRequired
+  route: PropTypes.object.isRequired,
+  showLoading: PropTypes.bool,
+  message: PropTypes.arrayOf(PropTypes.string),
+  loadNodeEnv: PropTypes.func,
+  sendPointInfo: PropTypes.func,
+  resetMessage: PropTypes.func
 };
 
 export default pieConnect(
   state => ({
-    showLoading: state.uiState.showLoading,
-    errorMsg: state.uiState.errorMsg,
-    showError: state.uiState.showError,
+    showLoading: !!state.uiState.showLoading,
+    message: state.message
+  }), {
     sendPointInfo,
-    loadNodeEnv
-  }),{
-    sendPointInfo
+    loadNodeEnv,
+    resetMessage
   }
 )(App);

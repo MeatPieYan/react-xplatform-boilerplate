@@ -118,7 +118,7 @@ function* sendPointInfo(action) {
   let nodeEnv = yield select(nodeEnvSelector);
   if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
 
-  yield call(sendUserAction, nodeEnv, postData);
+  // yield call(sendUserAction, nodeEnv, postData);
 }
 
 function* getNodeEnv() {
@@ -142,8 +142,8 @@ export default function* () {
 
     takeLatest(actions.COM_UI_SHOW_LOADING, setUISate, 'showLoading', true),
     takeLatest(actions.COM_UI_HIDE_LOADING, setUISate, 'showLoading', false),
-    takeLatest(actions.COM_UI_SHOW_ERROR, comShowError),
-    takeLatest(actions.COM_UI_HIDE_ERROR, setUISate, 'showError', false),
+    // takeLatest(actions.COM_UI_SHOW_ERROR, comShowError),
+    // takeLatest(actions.COM_UI_HIDE_ERROR, setUISate, 'showError', false),
     takeLatest(actions.COM_LOAD_NODE_ENV.REQUEST, getNodeEnv)
   ]);
 }
