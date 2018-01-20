@@ -69,7 +69,7 @@ function* enterPage(action) {
     let nodeEnv = yield select(nodeEnvSelector);
     if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
 
-    console.log('发送pv:', 'postData');
+    console.log('发送pv:', postData);
 
     yield call(sendUserAction, nodeEnv, postData);
   } catch (e) {
@@ -120,7 +120,7 @@ function* sendPointInfo(action) {
     let nodeEnv = yield select(nodeEnvSelector);
     if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
 
-    console.log('发送userAction:', 'postData');
+    console.log('发送userAction:', postData);
 
     // yield call(sendUserAction, nodeEnv, postData);
   } catch (e) {

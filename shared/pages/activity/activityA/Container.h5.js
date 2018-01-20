@@ -47,6 +47,7 @@ class TestComp extends PieComponent {
 }
 
 TestComp.pageId = '123';
+TestComp.pageTitle = '123';
 
 export default pieConnect(
   state => ({ test: state.activity.activityA.text }),

@@ -28,10 +28,12 @@ const WPconfig = config.map(item =>
     plugins: [
       new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
       new UglifyJSPlugin({
-        comments: false,
-        compress: {
-          warnings: false,
-          drop_console: true
+        uglifyOptions: {
+          comments: false,
+          compress: {
+            warnings: false,
+            drop_console: true
+          }
         }
       }),
       new HtmlWebpackPlugin({
