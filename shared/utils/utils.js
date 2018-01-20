@@ -1,5 +1,32 @@
 /* eslint-env browser */
 
+const getCookie = (name) => {
+  const reg = new RegExp(`(^| )${name}=([^;]*)(;|$)`);
+  const arr = document.cookie.match(reg);
+  if (arr) {
+    return unescape(arr[2]);
+  }
+  return null;
+};
+
+const generateCookieKey = () => `${Date.now()}/${Math.random()}`;
+
+
+const setCookie = (key, value) => {
+  document.cookie = `${key}=${escape(value)}`;
+};
+
+const getSessionKey = () => {
+  let cookieKey = getCookie('__session_key__');
+
+  if (!cookieKey || cookieKey === '') {
+    cookieKey = generateCookieKey();
+    setCookie('__session_key__', cookieKey);
+  }
+
+  return cookieKey;
+};
+
 const loadThirdPartyScript = (src, onReady) => {
   const script = document.createElement('script');
   const head = document.getElementsByTagName('head')[0];
@@ -55,5 +82,8 @@ const createRequestTypes = base => [REQUEST, SUCCESS, FAILURE].reduce((acc, type
 export default {
   loadThirdPartyScript,
   getXPath,
-  createRequestTypes
+  createRequestTypes,
+  getCookie,
+  setCookie,
+  getSessionKey
 };

@@ -4,6 +4,7 @@ import { pieAction } from 'za-piehelper';
 import * as actions from './commonAction';
 import { loadData, sendUserAction, loadNodeEnv } from '../../utils/service';
 import appBridge from '../../utils/AppBridge';
+import { getSessionKey } from '../../utils/utils';
 
 const envSelector = state => state.env;
 const nodeEnvSelector = state => state.node.env;
@@ -36,10 +37,10 @@ function* enterPage(action) {
     const postData = {
       logTime: Date.now(),
       appType: '2',
-      appId: 'h5', // TODO
+      appId: 'h5',
       eventType: 'pv',
-      sessionId: '', // TODO
-      userId: '', // TODO
+      sessionId: getSessionKey(),
+      userId: getSessionKey(),
       clientIp: '',
       pageId,
       pageName: pageName || '',
@@ -87,8 +88,8 @@ function* sendPointInfo(action) {
       appType: '2',
       appId: 'h5', // TODO
       eventType: 'asm',
-      sessionId: '', // TODO
-      userId: '', // TODO
+      sessionId: getSessionKey(),
+      userId: getSessionKey(),
       clientIp: '',
       pageId: env.pageId,
       pageName: env.pageName || '',
