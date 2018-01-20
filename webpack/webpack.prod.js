@@ -27,7 +27,13 @@ const WPconfig = config.map(item =>
     },
     plugins: [
       new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
-      new UglifyJSPlugin(),
+      new UglifyJSPlugin({
+        comments: false,
+        compress: {
+          warnings: false,
+          drop_console: true
+        }
+      }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, '../view/template.html'),
         filename: path.resolve(__dirname, `../dist/client/${item.remark}.html`)

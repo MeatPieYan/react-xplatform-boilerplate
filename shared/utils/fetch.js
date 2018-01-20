@@ -45,10 +45,12 @@ function request(options) {
 
   return fetch(url, {
     method: options.method,
-    body: JSON.stringify(options.data),
+    body: options.method.toLowerCase() === 'post' ? JSON.stringify(options.data) : {},
     headers,
     credentials: 'include'
-  }).then(res => res.json());
+  }).then((res) => {
+    return options.method.toLowerCase() === 'post' ? res.json() : res.text();
+  });
 }
 
 const get = path => request({

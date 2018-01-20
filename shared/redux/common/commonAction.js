@@ -1,3 +1,4 @@
+import { createRequestTypes } from '../../utils/utils';
 
 /**
  * ------------------------------------------------------------------
@@ -12,6 +13,7 @@
 export const COM_SEND_POINT_INFO = 'COM_SEND_POINT_INFO';
 export const COM_PAY = 'COM_PAY';
 export const COM_LOGIN = 'COM_LOGIN';
+export const COM_LOAD_NODE_ENV = createRequestTypes('COM_LOAD_NODE_ENV');
 
 export const COM_APP_LOGIN = 'COM_APP_LOGIN';
 export const COM_APP_SHARE = 'COM_APP_SHARE';
@@ -36,6 +38,8 @@ export const loginAction = data => ({ type: COM_LOGIN, payload: { text: data } }
 
 // 发送埋点信息
 export const sendPointInfo = xPath => ({ type: COM_SEND_POINT_INFO, payload: xPath });
+export const loadNodeEnv = () => ({ type: COM_LOAD_NODE_ENV.REQUEST });
+export const loadNodeEnvSuccess = env => ({ type: COM_LOAD_NODE_ENV.SUCCESS, payload: env });
 
 // app客户端调用
 export const appLogin = data => ({ type: COM_APP_LOGIN, payload: { text: data } });

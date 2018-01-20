@@ -2,10 +2,11 @@ import { takeLatest, all, call, put, select } from 'redux-saga/effects';
 import { pieAction } from 'za-piehelper';
 
 import * as actions from './commonAction';
-import { loadData, sendUserAction } from '../../utils/service';
+import { loadData, sendUserAction, loadNodeEnv } from '../../utils/service';
 import appBridge from '../../utils/AppBridge';
 
 const envSelector = state => state.env;
+const nodeEnvSelector = state => state.node.env;
 
 function* zaPay(action) {
   const data = yield call(loadData, '/api/zaPay', 'post', action.payload);
@@ -69,12 +70,10 @@ function* enterPage(action) {
     resolution: ''
   };
 
-  const nodeEnv = yield call(loadData, '/api/common/env');
-  if (!nodeEnv.success) {
-    // TODO
-  }
+  let nodeEnv = yield select(nodeEnvSelector);
+  if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
 
-  // yield call(sendUserAction, nodeEnv.value, postData);
+  // yield call(sendUserAction, nodeEnv, postData);
 }
 
 function* sendPointInfo(action) {
@@ -116,12 +115,19 @@ function* sendPointInfo(action) {
     resolution: ''
   };
 
-  const nodeEnv = yield call(loadData, '/api/common/env');
-  if (!nodeEnv.success) {
-    // TODO
-  }
+  let nodeEnv = yield select(nodeEnvSelector);
+  if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
 
-  yield call(sendUserAction, nodeEnv.value, postData);
+  yield call(sendUserAction, nodeEnv, postData);
+}
+
+function* getNodeEnv() {
+  try {
+    const env = yield call(loadNodeEnv);
+    yield put(actions.loadNodeEnvSuccess(env));
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 export default function* () {
@@ -137,6 +143,7 @@ export default function* () {
     takeLatest(actions.COM_UI_SHOW_LOADING, setUISate, 'showLoading', true),
     takeLatest(actions.COM_UI_HIDE_LOADING, setUISate, 'showLoading', false),
     takeLatest(actions.COM_UI_SHOW_ERROR, comShowError),
-    takeLatest(actions.COM_UI_HIDE_ERROR, setUISate, 'showError', false)
+    takeLatest(actions.COM_UI_HIDE_ERROR, setUISate, 'showError', false),
+    takeLatest(actions.COM_LOAD_NODE_ENV.REQUEST, getNodeEnv)
   ]);
 }

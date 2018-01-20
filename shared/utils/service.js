@@ -1,10 +1,10 @@
-import { request } from './fetch';
+import { request, get } from './fetch';
 import { service } from '../../config';
 
 const loadData = (path, method = 'post', data = {}) => {
   const options = {
     path,
-    type: method,
+    method,
     data
   };
 
@@ -17,7 +17,10 @@ const sendUserAction = (env = 'dev', data = {}) => {
   return loadData(`${domain}/userAction/create`, 'post', data);
 };
 
+const loadNodeEnv = () => get('/env');
+
 export default {
   loadData,
-  sendUserAction
+  sendUserAction,
+  loadNodeEnv
 };
