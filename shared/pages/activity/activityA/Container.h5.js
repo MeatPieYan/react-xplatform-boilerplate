@@ -47,6 +47,7 @@ class TestComp extends PieComponent {
 }
 
 TestComp.pageId = '123';
+TestComp.pageName = 'abc';
 TestComp.pageTitle = '123';
 
 export default pieConnect(
