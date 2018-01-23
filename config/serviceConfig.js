@@ -81,7 +81,7 @@ const serviceConfig = {
       domain: 'http://13674-tac-sales-za-sales-activity.test.za.net'
     },
     userAction: {
-      domain: 'https://tac-action-prd.zhongan.com'
+      domain: 'https://tac-action.zhongan.com'
     }
   }
 };
