@@ -8,7 +8,7 @@ const LOCAL_PORT = process.env.port || 8080;
 const Local = {
   host: LOCAL_HOST,
   port: LOCAL_PORT,
-  domain: `http://${LOCAL_HOST}${LOCAL_PORT}`
+  domain: `http://${LOCAL_HOST}:${LOCAL_PORT}`
 };
 
 function request(options) {
