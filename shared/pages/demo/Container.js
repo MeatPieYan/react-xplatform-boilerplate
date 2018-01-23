@@ -2,15 +2,14 @@ import React from 'react';
 import { PieComponent, pieConnect } from 'za-piehelper';
 
 import * as action from './action';
-import rootSaga from '../../../redux/rootSaga';
+import rootSaga from '../../redux/rootSaga';
 import * as style from './style.scss';
+import { comShowLoading, comHideLoading, setMessage } from '../../redux/common/commonAction';
+import close from './assets/close.png';
 
-import { comShowLoading, comHideLoading, setMessage } from '../../../redux/common/commonAction';
-import close from './close.png';
-
-class TestComp extends PieComponent {
+class DemoComp extends PieComponent {
   static loadInitialData(store) {
-    return super.loadInitData(store, rootSaga, action.testAction);
+    return super.loadInitData(store, rootSaga, action.demoAction);
   }
 
   constructor() {
@@ -20,7 +19,7 @@ class TestComp extends PieComponent {
   }
 
   componentDidMount() {
-    this.props.testAction();
+    this.props.demoAction();
   }
 
   showloading() {
@@ -34,8 +33,7 @@ class TestComp extends PieComponent {
   render() {
     return (
       <div>
-        <h2 className={style.color}>{this.props.test}</h2>
-        <h2 className={style.color}>{this.props.test}</h2>
+        <h2 className={style.color}>{ this.props.text }</h2>
         h5 page
         <button onClick={this.showloading} >showloading</button>
         <button onClick={this.showError} >showError</button>
@@ -45,15 +43,16 @@ class TestComp extends PieComponent {
   }
 }
 
-TestComp.pageId = '123';
-TestComp.pageName = 'abc';
-TestComp.pageTitle = '123';
+DemoComp.pageId = '123';
+DemoComp.pageName = 'demo';
+DemoComp.pageTitle = 'Demo';
 
 export default pieConnect(
-  state => ({ test: state.activity.activityA.text }),
+  state => ({ text: state.product.demo.text }),
   {
+    demoAction: action.demoAction,
     comShowLoading,
     comHideLoading,
     setMessage
   }
-)(TestComp);
+)(DemoComp);

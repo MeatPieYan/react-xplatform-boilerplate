@@ -1,9 +1,9 @@
 import { fork } from 'redux-saga/effects';
 
-import productASaga from '../../pages/product/productA/saga';
+import demoSaga from '../../pages/demo/saga';
 
 export default function* () {
   yield [
-    fork(productASaga)
+    fork(demoSaga)
   ];
 }

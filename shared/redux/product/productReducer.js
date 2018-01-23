@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import productA from '../../pages/product/productA/reducer';
+import demo from '../../pages/demo/reducer';
 
-const activityReducer = combineReducers({
-  productA
+const productReducer = combineReducers({
+  demo
 });
 
-export default activityReducer;
+export default productReducer;
