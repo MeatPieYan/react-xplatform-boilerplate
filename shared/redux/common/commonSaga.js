@@ -34,7 +34,7 @@ function* enterPage(action) {
   try {
     const { pageId, pageName } = action.payload;
     const env = yield select(envSelector);
-    const postData = {
+    const postData = [{
       logTime: Date.now(),
       appType: '2',
       appId: 'h5',
@@ -65,7 +65,7 @@ function* enterPage(action) {
       windowWidth: '',
       windowHeight: '',
       resolution: ''
-    };
+    }];
 
     let nodeEnv = yield select(nodeEnvSelector);
     if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
@@ -83,7 +83,7 @@ function* sendPointInfo(action) {
     const xPath = action.payload;
     const env = yield select(envSelector);
 
-    const postData = {
+    const postData = [{
       logTime: Date.now(),
       appType: '2',
       appId: 'h5', // TODO
@@ -116,14 +116,14 @@ function* sendPointInfo(action) {
       windowWidth: '',
       windowHeight: '',
       resolution: ''
-    };
+    }];
 
     let nodeEnv = yield select(nodeEnvSelector);
     if (!nodeEnv) nodeEnv = yield call(loadNodeEnv);
 
     console.log('发送userAction:', postData);
 
-    // yield call(sendUserAction, nodeEnv, postData);
+    yield call(sendUserAction, nodeEnv, postData);
   } catch (e) {
     yield put(actions.setMessage([e.message]));
   }

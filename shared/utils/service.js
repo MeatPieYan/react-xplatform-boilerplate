@@ -14,7 +14,7 @@ const loadData = (path, method = 'post', data = {}) => {
 const sendUserAction = (env = 'dev', data = {}) => {
   const { domain } = service[env].userAction;
 
-  return loadData(`${domain}/userAction/create`, 'post', data);
+  return loadData(`${domain}/userAction/create4h5`, 'post', data);
 };
 
 const loadNodeEnv = () => get('/env');
