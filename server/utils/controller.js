@@ -28,8 +28,7 @@ const formatData = () => async (ctx, next) => next();
 const sendCommonGW = (serviceName, method = 'post', serviceVersion = '1.0.0') => async (ctx, next) => {
   const data = method === 'post' ? ctx.request.body : {};
   if (ctx.query) Object.assign(data, ctx.query);
-  // const path = `/gateway/api?serviceName=${serviceName}&serviceVersion=${serviceVersion}`;
-  const path = `/${serviceName}`;
+  const path = `/gateway/api?serviceName=${serviceName}&serviceVersion=${serviceVersion}`;
   const options = { path, method, data };
   if (ctx.session.sessionKey) {
     options['session-key'] = ctx.session.sessionKey;
