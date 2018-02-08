@@ -1,3 +1,5 @@
+/* eslint-env browser */
+/* global fetch */
 require('isomorphic-fetch');
 
 const envConfig = '/api/common/logRecord';
@@ -21,7 +23,6 @@ class Log {
   constructor(env, clientInfo) {
     this.env = env;
     this.clientInfo = clientInfo;
-    this.initLog();
   }
 
   initLog() {

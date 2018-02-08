@@ -25,7 +25,8 @@ class App extends React.PureComponent {
     const { clientInfo, env } = nextProps;
     if (clientInfo && env && this.fristMount) {
       this.fristMount = false;
-      new Log(env, clientInfo);
+      const createLog = new Log(env, clientInfo);
+      createLog.initLog();
     }
   }
 
