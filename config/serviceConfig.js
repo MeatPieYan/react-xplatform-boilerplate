@@ -15,7 +15,7 @@ const serviceConfig = {
       domain: 'http://wechat.zhongan.com/Dev_8XUA0HY/open/index.php'
     },
     commongw: {
-      domain: 'http://tac-gw-api-itest.zhongan.com'
+      domain: 'http://10.139.105.54:62370'
     },
     activitygw: {
       domain: 'http://13674-tac-sales-za-sales-activity.test.za.net'
