@@ -72,7 +72,7 @@ function* enterPage(action) {
 
     console.log('发送pv:', postData);
 
-    yield call(sendUserAction, nodeEnv, postData);
+    // yield call(sendUserAction, nodeEnv, postData);
   } catch (e) {
     yield put(actions.setMessage([e.message]));
   }
@@ -123,7 +123,7 @@ function* sendPointInfo(action) {
 
     console.log('发送userAction:', postData);
 
-    yield call(sendUserAction, nodeEnv, postData);
+    // yield call(sendUserAction, nodeEnv, postData);
   } catch (e) {
     yield put(actions.setMessage([e.message]));
   }
